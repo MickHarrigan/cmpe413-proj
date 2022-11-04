@@ -17,7 +17,7 @@ architecture structural of cache_decoder is
         port(
             input1: in std_logic;
             input2: in std_logic;
-            output: out std_logic;
+            output: out std_logic
         );
 
     end component;
