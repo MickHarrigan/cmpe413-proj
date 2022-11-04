@@ -1,0 +1,105 @@
+ncvhdl: 15.20-s035: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	ncvhdl	15.20-s035: Started on Nov 03, 2022 at 22:16:08 EDT
+ncvhdl
+    -messages
+    -linedebug
+    -cdslib /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/cds.lib
+    -hdlvar /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/hdl.var
+    -smartorder
+    cache/cache_cell_1bit.vhd
+    cache/cache_decoder.vhd
+    primitives/and2.vhd
+    primitives/Dlatch.vhd
+    primitives/inverter.vhd
+    primitives/tx.vhd
+
+primitives/and2.vhd:
+	errors: 0, warnings: 0
+cache/cache_decoder.vhd:
+        re:     out std_logic;
+                               |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,10|31): identifier expected.
+        re:     out std_logic;
+                               |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,10|31): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+    );
+       |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,11|7): identifier expected.
+    );
+       |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,11|7): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+end cache_decoder;
+                   |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,12|19): identifier expected.
+end cache_decoder;
+                   |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,12|19): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+            output: out std_logic;
+                                   |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,20|35): identifier expected.
+            output: out std_logic;
+                                   |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,20|35): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+        );
+           |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,21|11): identifier expected.
+        );
+           |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,21|11): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+    end component;
+                   |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,23|19): identifier expected.
+    end component;
+                   |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,23|19): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+        port(
+           |
+ncvhdl_p: *E,BADPTL (cache/cache_decoder.vhd,26|11): illegal multiple port clauses [4.5] [1.1.1].
+            output: out std_logic;
+                                   |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,28|35): identifier expected.
+            output: out std_logic;
+                                   |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,28|35): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+        );
+           |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,29|11): identifier expected.
+        );
+           |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,29|11): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+    end component;
+                   |
+ncvhdl_p: *E,PORNKW (cache/cache_decoder.vhd,31|19): identifier expected.
+    end component;
+                   |
+ncvhdl_p: *E,MISCOL (cache/cache_decoder.vhd,31|19): expecting a colon (':') 87[4.3.3] 93[4.3.2].
+    for and2_0, and2_1: and2 use entity work.and2(structural);
+                             |
+ncvhdl_p: *E,MISRPN (cache/cache_decoder.vhd,33|29): expecting a right parenthesis (')') [4.5] [1.1.1].
+    for and2_0, and2_1: and2 use entity work.and2(structural);
+                                            |
+ncvhdl_p: *E,EXPRIS (cache/cache_decoder.vhd,33|44): expecting the reserved word 'IS' [1.1].
+    for inv_0: inverter use entity work.inverter(structural);
+    |
+ncvhdl_p: *E,EXPACE (cache/cache_decoder.vhd,34|4): expecting a library unit [11.1].
+    for inv_0: inverter use entity work.inverter(structural);
+                                       |
+ncvhdl_p: *E,EXPRIS (cache/cache_decoder.vhd,34|39): expecting the reserved word 'IS' [1.1].
+    signal x: std_logic;
+    |
+ncvhdl_p: *E,EXPACE (cache/cache_decoder.vhd,38|4): expecting a library unit [11.1].
+end structural;
+ncvhdl_p: *E,UXPEOF (cache/cache_decoder.vhd,47): unexpected end of file.
+	errors: 25, warnings: 0
+primitives/inverter.vhd:
+	errors: 0, warnings: 0
+primitives/tx.vhd:
+	errors: 0, warnings: 0
+primitives/Dlatch.vhd:
+	errors: 0, warnings: 0
+cache/cache_cell_1bit.vhd:
+    for cache_decoder_0: cache_decoder use entity work.cache_decoder(structural);
+                                                      |
+ncvhdl_p: *E,SELLIB (cache/cache_cell_1bit.vhd,52|54): unit (cache_decoder:structural) not found in library (vhdl).
+	errors: 1, warnings: 0
+TOOL:	ncvhdl	15.20-s035: Exiting on Nov 03, 2022 at 22:16:08 EDT  (total: 00:00:00)

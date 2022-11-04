@@ -7,7 +7,7 @@ entity cache_decoder is
         ce:     in std_logic;
         rd_wr:  in std_logic;
         we:     out std_logic;
-        re:     out std_logic;
+        re:     out std_logic
     );
 end cache_decoder;
 
@@ -25,7 +25,7 @@ architecture structural of cache_decoder is
     component inverter
         port(
             input:  in std_logic;
-            output: out std_logic;
+            output: out std_logic
         );
 
     end component;
