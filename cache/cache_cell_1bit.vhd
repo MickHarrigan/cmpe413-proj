@@ -7,48 +7,63 @@ entity cache_cell_1bit is
         d_wr:   in std_logic;
         ce:     in std_logic;
         rd_wr:  in std_logic;
-        d_rd:   out std_logic;
+        d_rd:   out std_logic
     );
 end cache_cell_1bit;
 
 architecture structural of cache_cell_1bit is
     component Dlatch
         port(
-            input1:     in  std_logic_vector(3 downto 0);
-            input2:     in  std_logic_vector(3 downto 0);
-            carryin:    in  std_logic;
-            sum:        out std_logic_vector(3 downto 0);
-            carryout:   out std_logic
+            d:      in std_logic;
+            clk:    in std_logic;
+            q:      out std_logic;
+            qbar:   out std_logic
         );
     end component;
 
     component tx
         port(
-            B:      in std_logic_vector(3 downto 0);
-            S0:     in std_logic;
-            S1:     in std_logic;
-            Y:      out std_logic_vector(3 downto 0)
+            sel:    in std_logic;
+            selnot: in std_logic;
+            input:  in std_logic;
+            output: out std_logic
+        );
+    end component;
+
+    component inverter
+        port(
+            input:  in std_logic;
+            output: out std_logic
         );
     end component;
 
     component cache_decoder
         port(
-            B:      in std_logic_vector(3 downto 0);
-            S0:     in std_logic;
-            S1:     in std_logic;
-            Y:      out std_logic_vector(3 downto 0)
+            ce:     in std_logic;
+            rd_wr:  in std_logic;
+            we:     out std_logic;
+            re:     out std_logic
         );
     end component;
 
-    for adder4_0: adder4 use entity work.adder4(structural);
-    for y_gen_0: y_gen use entity work.y_gen(structural);
+    for Dlatch_0: Dlatch use entity work.Dlatch(structural);
+    for tx_0: tx use entity work.tx(structural);
+    for inverter_0: inverter use entity work.inverter(structural);
+    for cache_decoder_0: cache_decoder use entity work.cache_decoder(structural);
     
-    signal Y: std_logic_vector(3 downto 0);
+    signal we: std_logic;
+    signal re: std_logic;
+    signal re_n: std_logic;
+    signal q: std_logic;
     
     begin
 
-    y_gen_0: y_gen port map(B, S0, S1, Y);
+    Dlatch_0: Dlatch port map(d_wr, we, q, open);
 
-    adder4_0: adder4 port map(A, Y, Cin, G, Cout);
+    tx_0: tx port map(re, re_n, q, d_rd);
+
+    inverter_0: inverter port map(re, re_n);
+
+    cache_decoder_0: cache_decoder port map(ce, rd_wr, we, re);
 
 end structural;
