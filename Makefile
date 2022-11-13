@@ -1,9 +1,14 @@
 CADENCE = ~/cmpe413/cadence
 SCRIPTS = scripts
 
+FILES_CHIP = chip.vhd
 FILES_CACHE = cache/* primitives/*
 
-cache_cell_1bit: $(FILES_CACHE)
+chip: $(FILES_CHIP)
+	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_CHIP)
+
+cache: $(FILES_CACHE)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_CACHE)
 
