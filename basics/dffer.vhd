@@ -4,7 +4,7 @@ library STD;
 library IEEE;                      
 use IEEE.std_logic_1164.all;
 
-entity dff_er is
+entity dffer is
     port(
         d       : in std_logic;
         clk     : in std_logic;
@@ -13,9 +13,9 @@ entity dff_er is
         q       : out std_logic;
         qbar    : out std_logic
     );
-end dff_er;
+end dffer;
 
-architecture structural of dff_er is
+architecture structural of dffer is
     component dff
         port(
             d       : in std_logic;

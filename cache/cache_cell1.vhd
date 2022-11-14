@@ -4,16 +4,16 @@ library STD;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity cache_cell_1bit is
+entity cache_cell1 is
     port(
         d_wr    : in std_logic;
         ce      : in std_logic;
         rd_wr   : in std_logic;
         d_rd    : out std_logic
     );
-end cache_cell_1bit;
+end cache_cell1;
 
-architecture structural of cache_cell_1bit is
+architecture structural of cache_cell1 is
     component Dlatch
         port(
             d       : in std_logic;
