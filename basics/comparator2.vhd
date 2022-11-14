@@ -42,3 +42,4 @@ begin
     nor2_0: nor2 port map(x, y, output);
 
 end structural;
+

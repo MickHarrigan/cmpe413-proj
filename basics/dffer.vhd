@@ -42,8 +42,8 @@ architecture structural of dffer is
 
     component mux2
         port(
+            input0  : in std_logic;
             input1  : in std_logic;
-            input2  : in std_logic;
             s       : in std_logic;
             output  : out std_logic
         );
@@ -76,3 +76,4 @@ begin
     buff_0: buff port map(qi, q);
 
 end structural;
+
