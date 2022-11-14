@@ -73,7 +73,7 @@ architecture structural of counter5 is
 
 begin
     tie_high_0: tie_high port map(one);
-    tie_low_0: tie_high port map(zero);
+    tie_low_0: tie_low port map(zero);
 
     -- Generate 5-bit number with value 1
     buff_0: buff port map(one, inc(0));
