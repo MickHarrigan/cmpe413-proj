@@ -8,7 +8,6 @@ FILES_CACHE = cache/* $(FILES_BASICS)
 FILES_COUNTER = counter/* $(FILES_BASICS)
 FILES_CHIP = chip.vhd
 
-
 # Designs
 
 primitives: $(FILES_PRIMITIVES)
@@ -49,18 +48,3 @@ chip: $(FILES_CHIP)
 
 clean:
 	rm -f *.log
-
-
-
-
-
-#alu_4_tb: alu_4_tb.vhd $(FILES_ALU_4)
-#	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var -smartorder alu_4_tb.vhd
-#
-#	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var alu_4_tb
-#
-#	$(CADENCE)/run_ncsim.bash -input ncsim.run -messages -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var alu_4_tb
-		
