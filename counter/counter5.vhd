@@ -89,3 +89,4 @@ begin
     buff5_0: buff5 port map(qi, q);
 
 end structural;
+

@@ -6,8 +6,8 @@ use IEEE.std_logic_1164.all;
 
 entity mux2 is
     port(
+        input0  : in std_logic;
         input1  : in std_logic;
-        input2  : in std_logic;
         s       : in std_logic;
         output  : out std_logic
     );
@@ -41,16 +41,14 @@ architecture structural of mux2 is
     for and2_0, and2_1: and2 use entity work.and2(structural);
     for inverter_0: inverter use entity work.inverter(structural);    
 
-    signal sn: std_logic;
-    signal in1g: std_logic;
-    signal in2g: std_logic;
-    
+    signal sn, in0g, in1g: std_logic;
+        
 begin
     inverter_0: inverter port map(s, sn);
     
-    and2_0: and2 port map(input1, sn, in1g);
-    and2_1: and2 port map(input2, s, in2g);
+    and2_0: and2 port map(input0, sn, in0g);
+    and2_1: and2 port map(input1, s, in1g);
     
-    or2_0: or2 port map(in1g, in2g, output);
+    or2_0: or2 port map(in0g, in1g, output);
 
 end structural;

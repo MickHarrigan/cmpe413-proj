@@ -30,3 +30,4 @@ begin
         cache_cell1_1: cache_cell1 port map(d_wr(1), ce, rd_wr, d_rd(1));
         
 end structural;
+

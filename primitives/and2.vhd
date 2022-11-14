@@ -23,3 +23,4 @@ begin
   output <= input2 and input1;
 
 end structural;
+
