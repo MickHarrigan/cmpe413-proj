@@ -2,12 +2,12 @@ CADENCE = ~/cmpe413/cadence
 SCRIPTS = scripts
 TESTBENCHES = testbenches
 
-FILES_PRIMITIVES = primitives/*
-FILES_BASICS = basics/* $(FILES_PRIMITIVES)
-FILES_CACHE = cache/* $(FILES_BASICS)
-FILES_COUNTER = counter/* $(FILES_BASICS)
-FILES_STATEMACHINE = statemachine/* $(FILES_BASICS)
-FILES_CHIP = chip.vhd
+FILES_PRIMITIVES = src/primitives/*
+FILES_BASICS = src/basics/* $(FILES_PRIMITIVES)
+FILES_CACHE = src/cache/* $(FILES_BASICS)
+FILES_COUNTER = src/counter/* $(FILES_BASICS)
+FILES_STATEMACHINE = src/statemachine/* $(FILES_BASICS)
+FILES_CHIP = src/chip.vhd
 
 # Designs
 
