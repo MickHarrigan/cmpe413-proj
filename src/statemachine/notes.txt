@@ -27,10 +27,18 @@ shiftreg_input =
 
 shiftreg_rst = 
     [4:0] == 00001
-    
+
+cpu_data_oe = 
+    [4:0] == 01000 or 01001
+
+mem_add_oe = 
+    [4:0] == 01101
+
+mem_enable = 
+    [4:0] == 01101    
 
 cb_ce = 
-    [4:0] == 01100 or 01000 or 01111 or 01001 or 10101 or
+    ([4:0] == 01100 or 01000 or 01111 or 01001 or 10101) or
     ([4] and [3])
 
 cb_ce_adj = 
@@ -43,6 +51,14 @@ cb_rd_wr =
     [4]' and [3]
 
 cb_offset = 
-    
-    
+    mux:
+        input0: cpu_add[1:0]
+        input1: [2:1]
+        s:      [4]
 
+tb_ce = 
+    [4:0] == 01100 or 11000 or 10100
+
+tb_rd_wr = 
+    [4:0] == 01100 or 10100
+    
