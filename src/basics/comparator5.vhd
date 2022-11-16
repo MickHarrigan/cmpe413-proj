@@ -42,7 +42,7 @@ architecture structural of comparator5 is
 
     for xor2_0, xor2_1, xor2_2, xor2_3, xor2_4: xor2 use entity work.xor2(structural);
     for nor2_0: nor2 use entity work.nor2(structural);
-    for or4_0: or4 use entity work.nor2(structural);
+    for or4_0: or4 use entity work.or4(structural);
 
     signal a,b,c,d,e,f: std_logic;
 
