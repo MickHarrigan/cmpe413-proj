@@ -6,11 +6,11 @@ use IEEE.std_logic_1164.all;
 
 entity bus_creator5 is
     port(
-        input0  : in std_logic;
-        input1  : in std_logic;
-        input2  : in std_logic;
-        input3  : in std_logic;
         input4  : in std_logic;
+        input3  : in std_logic;
+        input2  : in std_logic;
+        input1  : in std_logic;
+        input0  : in std_logic;
         output  : out std_logic_vector(4 downto 0)
     );
 end bus_creator5;
