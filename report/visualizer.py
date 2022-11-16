@@ -12,27 +12,27 @@ tree.create_node("Chip", chip)
 # - State Machine
 i += 1
 sm = i
-tree.create_node("State Machine", sm, parent=0)
+tree.create_node("State Machine", sm, parent=chip)
 # - Cache Block
 i += 1
 cache = i
-tree.create_node("Cache Block", cache, parent=0)
+tree.create_node("Cache Block", cache, parent=chip)
 # - Hit/Miss Detector
 i += 1
 hmd = i
-tree.create_node("Hit/Miss Detector", hmd, parent=0)
+tree.create_node("Hit/Miss Detector", hmd, parent=chip)
 # - Output Enable (Data)
 i += 1
 oe_d = i
-tree.create_node("Output Enable (Data)", oe_d, parent=0)
+tree.create_node("Output Enable (Data)", oe_d, parent=chip)
 # - Output Enable (Address)
 i += 1
 oe_a = i
-tree.create_node("Output Enable (Address)", oe_a, parent=0)
+tree.create_node("Output Enable (Address)", oe_a, parent=chip)
 # - Registers
 i += 1
 reg = i
-tree.create_node("Registers", reg, parent=0)
+tree.create_node("Registers", reg, parent=chip)
 
 
 # submodules section

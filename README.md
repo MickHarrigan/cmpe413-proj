@@ -11,6 +11,10 @@ Point this to the directory of the cds.lib and hdl.var files.
 
 To then compile each module use the name of said module, or make all to make the full system.
 
+## Information on Development
+The `visualizer.py` script cannot be used on the dev systems as we cannot install the required library.
+The output of this script shall be included in a later commit for the final version of the README.
+
 ## Next Steps
 - Create the generalized counter
 - Create the generalized decoder
