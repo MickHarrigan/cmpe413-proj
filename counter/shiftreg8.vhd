@@ -32,13 +32,22 @@ architecture structural of shiftreg8 is
         );
     end component;
 
+    component tie_high
+        port(
+            output: out std_logic
+        );
+    end component;
 
     for dffer_0, dffer_1, dffer_2, dffer_3, dffer_4, dffer_5, dffer_6, dffer_7: dffer use entity work.dffer(structural);
-    for buff_0, buff_1, buff_2, buff_3, buff_4, buff_5, buff_6, buff_7: buff use entity work.dffer(structural);
+    for buff_0, buff_1, buff_2, buff_3, buff_4, buff_5, buff_6, buff_7: buff use entity work.buff(structural);
+    for tie_high_0: tie_high use entity work.tie_high(structural);
     
     signal q0i, q1i, q2i, q3i, q4i, q5i, q6i, q7i: std_logic;
+    signal one: std_logic;
 
 begin
+    tie_high_0: tie_high port map(one);
+
     dffer_0: dffer port map(input, clk, one, rst, q0i, open);
     dffer_1: dffer port map(q0i, clk, one, rst, q1i, open);
     dffer_2: dffer port map(q1i, clk, one, rst, q2i, open);
@@ -46,7 +55,7 @@ begin
     dffer_4: dffer port map(q3i, clk, one, rst, q4i, open);
     dffer_5: dffer port map(q4i, clk, one, rst, q5i, open);
     dffer_6: dffer port map(q5i, clk, one, rst, q6i, open);
-    dffer_7: dffer port map(q6i, ckl, one, rst, q7i, open);
+    dffer_7: dffer port map(q6i, clk, one, rst, q7i, open);
 
     buff_0: buff port map(q0i, q(0));
     buff_1: buff port map(q1i, q(1));
