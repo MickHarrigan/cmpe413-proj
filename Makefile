@@ -5,6 +5,7 @@ TESTBENCHES = testbenches
 FILES_PRIMITIVES = src/primitives/*
 FILES_BASICS = src/basics/* $(FILES_PRIMITIVES)
 FILES_CACHE = src/cache/* $(FILES_BASICS)
+FILES_CONTROL = src/control/* $(FILES_BASICS)
 FILES_COUNTER = src/counter/* $(FILES_BASICS)
 FILES_TAG = src/tag/* $(FILES_CACHE)
 FILES_STATEMACHINE = src/statemachine/* $(FILES_BASICS)
@@ -23,6 +24,10 @@ basics: $(FILES_BASICS)
 cache: $(FILES_CACHE)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_CACHE)
+
+control: $(FILES_CONTROL)
+	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_CONTROL)
 
 counter: $(FILES_COUNTER)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \

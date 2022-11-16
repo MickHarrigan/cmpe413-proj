@@ -18,27 +18,28 @@ State code bit meanings
 
 Pseudocode output equations
 [brackets] are bit positions of state code
+"state" is the decimal value of [4:0]
 
 cpu_busy = 
     (([4] xor [3]) and [2]) or ([4] and [3])
 
 shiftreg_input = 
-    [4:0] == 01101
+    state == 13
 
 shiftreg_rst = 
-    [4:0] == 00001
+    state == 1
 
 cpu_data_oe = 
-    [4:0] == 01000 or 01001
+    state == 8 or 9
 
 mem_add_oe = 
-    [4:0] == 01101
+    state == 13
 
 mem_enable = 
-    [4:0] == 01101    
+    state == 13    
 
 cb_ce = 
-    ([4:0] == 01100 or 01000 or 01111 or 01001 or 10101) or
+    (state == 12 or 8 or 15 or 9 or 21) or
     ([4] and [3])
 
 cb_ce_adj = 
@@ -57,8 +58,19 @@ cb_offset =
         s:      [4]
 
 tb_ce = 
-    [4:0] == 01100 or 11000 or 10100
+    state == 12 or 24 or 20
 
 tb_rd_wr = 
-    [4:0] == 01100 or 10100
+    [4]'
     
+valid_ce = 
+    state == 12 or 24 or 20
+
+valid_ce_all = 
+    state == 1
+
+valid_rd_wr = 
+    [4] xor [3]
+
+valid_d_wr = 
+    [4]
