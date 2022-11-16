@@ -6,6 +6,7 @@ FILES_PRIMITIVES = src/primitives/*
 FILES_BASICS = src/basics/* $(FILES_PRIMITIVES)
 FILES_CACHE = src/cache/* $(FILES_BASICS)
 FILES_COUNTER = src/counter/* $(FILES_BASICS)
+FILES_TAG = src/tag/* $(FILES_CACHE)
 FILES_STATEMACHINE = src/statemachine/* $(FILES_BASICS)
 FILES_CHIP = src/chip.vhd
 
@@ -26,6 +27,10 @@ cache: $(FILES_CACHE)
 counter: $(FILES_COUNTER)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_COUNTER)
+
+tag: $(FILES_TAG)
+	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_TAG)
 
 statemachine: $(FILES_STATEMACHINE)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
