@@ -2,7 +2,8 @@
 This is the final project for CMPE 413 done by Daniel Cleaver and Mick Harrigan
 
 ## Description
-[Here][1] is the link to the designating file that describes what the project is in full. This repo contains the beginning VHDL code that is used to then later create the specified schematis as well as layouts for this system.
+[Here](report/project_document.pdf) is the link to the designating file that describes what the project is in full. This repo contains the beginning VHDL code that is used to then later create the specified schematis as well as layouts for this system.
+The other document used to create this system is [here](report/project_waveforms.pdf) and describes the expected waveforms to be created from the final system.
 
 
 ## Usage
@@ -18,5 +19,3 @@ The output of this script shall be included in a later commit for the final vers
 ## Next Steps
 - Create the generalized counter
 - Create the generalized decoder
-
-[1]: TODO, dead link
