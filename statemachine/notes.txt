@@ -1,0 +1,48 @@
+State code bit meanings
+
+00xxx: misc
+
+01xxx: Read (misc)
+    01Axx:
+        cpu_busy = A
+
+10xxx: Write
+    10Axx:
+        cpu_busy = A
+
+11xxx: Read (write data from mem)
+    xxABC:
+        cb_offset = AB
+        cb_ce_inv = C
+
+
+Pseudocode output equations
+[brackets] are bit positions of state code
+
+cpu_busy = 
+    (([4] xor [3]) and [2]) or ([4] and [3])
+
+shiftreg_input = 
+    [4:0] == 01101
+
+shiftreg_rst = 
+    [4:0] == 00001
+    
+
+cb_ce = 
+    [4:0] == 01100 or 01000 or 01111 or 01001 or 10101 or
+    ([4] and [3])
+
+cb_ce_adj = 
+    [4] and [3]
+
+cb_ce_inv = 
+    [0]
+
+cb_rd_wr = 
+    [4]' and [3]
+
+cb_offset = 
+    
+    
+
