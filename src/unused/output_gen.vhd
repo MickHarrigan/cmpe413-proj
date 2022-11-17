@@ -1,4 +1,4 @@
--- Generates control signal outputs based on current state
+-- Generate control signal outputs based on current state
 
 library STD;
 library IEEE;

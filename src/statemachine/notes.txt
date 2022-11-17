@@ -1,4 +1,4 @@
-State code bit meanings
+--- State code bit meanings ---
 
 00xxx: misc
 
@@ -16,7 +16,7 @@ State code bit meanings
         cb_ce_inv = C
 
 
-Pseudocode output equations
+--- Pseudocode output equations ---
 [brackets] are bit positions of state code
 "state" is the decimal value of [4:0]
 
