@@ -16,6 +16,29 @@ To then compile each module use the name of said module, or make all to make the
 The `visualizer.py` script cannot be used on the dev systems as we cannot install the required library.
 The output of this script shall be included in a later commit for the final version of the README.
 
-## Next Steps
-- Create the generalized counter
-- Create the generalized decoder
+## Hierarchy of Chip Design
+```
+Chip
+├── Cache Block
+│   ├── 2 Bit Row Tags
+│   ├── 4x4 Byte Cells
+│   ├── Byte Decoder
+│   └── Valid Tags
+├── Hit/Miss Detector
+├── Output Enable (Address)
+├── Output Enable (Data)
+├── Registers
+└── State Machine
+```
+### Explanation
+1. Chip: Stuff
+2. Cache Block
+   1. row tags
+   2. cells
+   3. decoder
+   4. valid
+3. hit/miss
+4. out en address
+5. out en data
+6. registers
+7. state machine
