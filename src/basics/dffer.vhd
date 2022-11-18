@@ -67,7 +67,7 @@ architecture structural of dffer is
 begin
     inverter_0: inverter port map(rst, rstn);
 
-    mux2_0: mux2 port map(d, qi, ce, de);
+    mux2_0: mux2 port map(qi, d, ce, de);
 
     and2_0: and2 port map(de, rstn, dg);
 

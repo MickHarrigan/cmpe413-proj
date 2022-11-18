@@ -286,7 +286,6 @@ architecture structural of chip is
     signal hit_miss: std_logic;
     signal hm_tag: std_logic_vector(1 downto 0);
     
-    signal cpu_data_out: std_logic_vector(7 downto 0);
     signal mem_add_out: std_logic_vector(5 downto 0);
     signal cpu_data_oe, mem_add_oe: std_logic;
 
