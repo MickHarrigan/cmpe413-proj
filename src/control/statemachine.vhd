@@ -134,25 +134,6 @@ architecture structural of statemachine is
         );
     end component;
 
-    component bus_creator5
-        port(
-            input4  : in std_logic;
-            input3  : in std_logic;
-            input2  : in std_logic;
-            input1  : in std_logic;
-            input0  : in std_logic;
-            output  : out std_logic_vector(4 downto 0)
-        );
-    end component;
-
-    component comparator5
-        port(
-            input1  : in std_logic_vector(4 downto 0);
-            input2  : in std_logic_vector(4 downto 0);
-            output  : out std_logic
-        );
-    end component;
-
     component mux2
         port(
             input0  : in std_logic;

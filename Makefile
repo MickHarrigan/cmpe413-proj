@@ -5,11 +5,8 @@ TESTBENCHES = testbenches
 FILES_PRIMITIVES = src/primitives/*
 FILES_BASICS = src/basics/* $(FILES_PRIMITIVES)
 FILES_CACHE = src/cache/* $(FILES_BASICS)
-FILES_CONTROL = src/control/* $(FILES_BASICS)
-FILES_COUNTER = src/counter/* $(FILES_BASICS)
-FILES_TAG = src/tag/* $(FILES_CACHE)
-FILES_STATEMACHINE = src/statemachine/* $(FILES_BASICS)
-FILES_CHIP = src/chip.vhd $(FILES_BASICS) $(FILES_CACHE) $(FILES_CONTROL) $(FILES_COUNTER) $(FILES_TAG) $(FILES_STATEMACHINE)
+FILES_CONTROL = src/control/* $(FILES_BASICS) $(FILES_CACHE)
+FILES_CHIP = src/chip.vhd $(FILES_BASICS) $(FILES_CACHE) $(FILES_CONTROL)
 
 # Designs
 
@@ -28,18 +25,6 @@ cache: $(FILES_CACHE)
 control: $(FILES_CONTROL)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_CONTROL)
-
-counter: $(FILES_COUNTER)
-	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
-		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_COUNTER)
-
-tag: $(FILES_TAG)
-	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
-		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_TAG)
-
-statemachine: $(FILES_STATEMACHINE)
-	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
-		-hdlvar $(CADENCE)/hdl.var -smartorder $(FILES_STATEMACHINE)
 
 chip: $(FILES_CHIP)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
