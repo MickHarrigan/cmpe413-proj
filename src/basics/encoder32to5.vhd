@@ -51,6 +51,8 @@ architecture structural of encoder32to5 is
         );
     end component;
 
+    signal a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,w,x,y,z: std_logic;
+
 
 begin
     -- o0 = odds
@@ -61,25 +63,25 @@ begin
     or4_4 : or4 port map(a,b,c,d, output0(0));
 
     -- o1 = 2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31
-    or4_5 : or4 port map(input2, input3, input6, input7, w);
-    or4_6 : or4 port map(input10, input11, input14, input15, x);
-    or4_7 : or4 port map(input18, input19, input22, input23, y);
-    or4_8 : or4 port map(input26, input27, input30, input31, z);
-    or4_9 : or4 port map(w,x,y,z, output0(1));
+    or4_5 : or4 port map(input2, input3, input6, input7, e);
+    or4_6 : or4 port map(input10, input11, input14, input15, f);
+    or4_7 : or4 port map(input18, input19, input22, input23, g);
+    or4_8 : or4 port map(input26, input27, input30, input31, h);
+    or4_9 : or4 port map(e,f,g,h, output0(1));
 
     -- o2 = 4-7, 12-15, 20-23, 28-31
-    or4_10 : or4 port map(input4, input5, input6, input7, w);
-    or4_11 : or4 port map(input12, input13, input14, input15, x);
-    or4_12 : or4 port map(input20, input21, input22, input23, y);
-    or4_13 : or4 port map(input28, input29, input30, input31, z);
-    or4_14 : or4 port map(w,x,y,z, output0(2));
+    or4_10 : or4 port map(input4, input5, input6, input7, i);
+    or4_11 : or4 port map(input12, input13, input14, input15, j);
+    or4_12 : or4 port map(input20, input21, input22, input23, k);
+    or4_13 : or4 port map(input28, input29, input30, input31, l);
+    or4_14 : or4 port map(i,j,k,l, output0(2));
 
     -- o3 = 8-15, 24-31
-    or4_15 : or4 port map(input8, input9, input10, input11, w);
-    or4_16 : or4 port map(input12, input13, input14, input15, x);
-    or4_17 : or4 port map(input24, input25, input26, input27, y);
-    or4_18 : or4 port map(input28, input29, input30, input31, z);
-    or4_19 : or4 port map(w,x,y,z, output0(3));
+    or4_15 : or4 port map(input8, input9, input10, input11, m);
+    or4_16 : or4 port map(input12, input13, input14, input15, n);
+    or4_17 : or4 port map(input24, input25, input26, input27, o);
+    or4_18 : or4 port map(input28, input29, input30, input31, p);
+    or4_19 : or4 port map(m,n,o,p, output0(3));
 
     -- o4 = 16-31
     or4_20 : or4 port map(input16, input17, input18, input19, w);
