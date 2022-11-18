@@ -22,6 +22,12 @@ entity chip is
 end chip;
 
 architecture structural of chip is
+    component tie_low
+        port(
+            output: out std_logic
+        );
+    end component;
+
     -- state machine
     component statemachine
         port(
@@ -175,6 +181,18 @@ architecture structural of chip is
         );
     end component;
 
+    component bus_creator6
+        port(
+            input5  : in std_logic;
+            input4  : in std_logic;
+            input3  : in std_logic;
+            input2  : in std_logic;
+            input1  : in std_logic;
+            input0  : in std_logic;
+            output  : out std_logic_vector(5 downto 0)
+        );
+    end component;
+
     -- oe_d
     component output_enable8
         port(
@@ -210,6 +228,7 @@ architecture structural of chip is
         );
     end component;
 
+    for tie_low_0: tie_low use entity work.tie_low(structural);
 
     for reg_cpu_add: dffer6 use entity work.dffer6(structural);
 
@@ -238,11 +257,15 @@ architecture structural of chip is
 
     for hm: hit_miss_detector use entity work.hit_miss_detector(structural);
 
-    for oe_mem_add: output_enable6 use entity work.output_enable6(structural);
-
     for oe_cpu_data: output_enable8 use entity work.output_enable8(structural);
 
+    for bus_creator6_mem_add: bus_creator6 use entity work.bus_creator6(structural);
+
+    for oe_mem_add: output_enable6 use entity work.output_enable6(structural);
+
     
+    signal b0: std_logic;
+
     signal cpu_add_stored: std_logic_vector(5 downto 0);
     signal cpu_rd_wrn_stored: std_logic;
     signal cpu_data_stored: std_logic_vector(7 downto 0);
@@ -263,11 +286,15 @@ architecture structural of chip is
     signal hit_miss: std_logic;
     signal hm_tag: std_logic_vector(1 downto 0);
     
+    signal cpu_data_out: std_logic_vector(7 downto 0);
+    signal mem_add_out: std_logic_vector(5 downto 0);
     signal cpu_data_oe, mem_add_oe: std_logic;
 
     signal mem_enable: std_logic;
     
 begin
+    tie_low_0: tie_low port map(b0);
+
     -- connect cpu_add to 6 bit register
     -- ce is whatever enables the address register, same for rst
     -- wire_to_cache is a 5 downto 0 vector that goes to tag comparator (hit miss) and cache_block index/offset
@@ -325,7 +352,17 @@ begin
     bus_creator2_hm_tag: bus_creator2 port map(cpu_add_stored(3), cpu_add_stored(2), hm_tag);
     hm: hit_miss_detector port map(tb_d_rd, hm_tag, valid_d_rd, hit_miss);
     
+    oe_cpu_data: output_enable8 port map(cb_d_rd, cpu_data_oe, cpu_data);
 
+    bus_creator6_mem_add: bus_creator6 port map(
+        cpu_add_stored(5), 
+        cpu_add_stored(4), 
+        cpu_add_stored(3), 
+        cpu_add_stored(2), 
+        b0, b0,
+        mem_add_out
+    );
+    oe_mem_add: output_enable6 port map(mem_add_out, mem_add_oe, mem_add);
 
     
     
