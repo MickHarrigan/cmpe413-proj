@@ -101,7 +101,7 @@ begin
   
   io_process: process
 
-    file infile  : text open read_mode is "/afs/umbc.edu/users/d/d/d163/pub/cmpe413_proj/cmpe413-proj/testbenches/example_test1/chip_in.txt";
+    file infile  : text open read_mode is "/afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj/testbenches/example_test1/chip_in.txt";
     variable out_line: line;
     variable buf: line;
     variable value: std_logic_vector(7 downto 0);

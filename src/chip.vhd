@@ -71,7 +71,9 @@ architecture structural of chip is
             valid_ce        : out std_logic;
             valid_ce_all    : out std_logic;
             valid_rd_wr     : out std_logic;
-            valid_d_wr      : out std_logic
+            valid_d_wr      : out std_logic;
+
+            cb_d_wr_control : out std_logic
         );
     end component;
 
@@ -198,6 +200,15 @@ architecture structural of chip is
         );
     end component;
 
+    component mux2
+        port(
+            input0  : in std_logic;
+            input1  : in std_logic;
+            s       : in std_logic;
+            output  : out std_logic
+        );
+    end component;
+
     component bus_creator2
         port(
             input1  : in std_logic;
@@ -270,6 +281,9 @@ architecture structural of chip is
 
     for buff_shiftreg_done: buff use entity work.buff(structural);
 
+    for mux2_0, mux2_1, mux2_2, mux2_3, mux2_4, mux2_5, mux2_6, mux2_7
+        : mux2 use entity work.mux2(structural);
+
     for cb_ce_gen_0: cb_ce_gen use entity work.cb_ce_gen(structural);
 
     for cb: cache_block use entity work.cache_block(structural);
@@ -318,6 +332,9 @@ architecture structural of chip is
     signal cpu_data_oe, mem_add_oe: std_logic;
 
     signal mem_enable: std_logic;
+
+    signal cb_d_wr_control: std_logic;
+    signal cb_d_wr: std_logic_vector(7 downto 0);
     
 begin
     tie_low_0: tie_low port map(b0);
@@ -353,17 +370,27 @@ begin
         cb_ce, cb_ce_adj, cb_ce_inv, 
         cb_rd_wr, cb_offset1, cb_offset0, 
         tb_ce, tb_rd_wr, 
-        valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr
+        valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr,
+        cb_d_wr_control
     );
 
 
     counter: shiftreg8 port map(clk, shiftreg_input, shiftreg_rst, shiftreg_q);
     buff_shiftreg_done: buff port map(shiftreg_q(6), shiftreg_done);
     
-
+    -- Select between cpu_data and mem_data
+    mux2_0: mux2 port map(cpu_data_stored(0), mem_data(0), cb_d_wr_control, cb_d_wr(0));
+    mux2_1: mux2 port map(cpu_data_stored(1), mem_data(1), cb_d_wr_control, cb_d_wr(1));
+    mux2_2: mux2 port map(cpu_data_stored(2), mem_data(2), cb_d_wr_control, cb_d_wr(2));
+    mux2_3: mux2 port map(cpu_data_stored(3), mem_data(3), cb_d_wr_control, cb_d_wr(3));
+    mux2_4: mux2 port map(cpu_data_stored(4), mem_data(4), cb_d_wr_control, cb_d_wr(4));
+    mux2_5: mux2 port map(cpu_data_stored(5), mem_data(5), cb_d_wr_control, cb_d_wr(5));
+    mux2_6: mux2 port map(cpu_data_stored(6), mem_data(6), cb_d_wr_control, cb_d_wr(6));
+    mux2_7: mux2 port map(cpu_data_stored(7), mem_data(7), cb_d_wr_control, cb_d_wr(7));
+    
     cb_ce_gen_0: cb_ce_gen port map(cb_ce, cb_ce_adj, cb_ce_inv, clk, cb_ce_out);
     cb: cache_block port map(
-        cpu_data_stored, cb_ce_out, cb_rd_wr, 
+        cb_d_wr, cb_ce_out, cb_rd_wr, 
         cpu_add_stored(2), cpu_add_stored(3), cb_offset0, cb_offset1,
         cb_d_rd
     );

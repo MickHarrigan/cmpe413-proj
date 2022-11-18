@@ -43,10 +43,11 @@ cb_ce =
     ([4] and [3])
 
 cb_ce_adj = 
-    [4] and [3]
+    ([4] and [3]) or
+    state == 15
 
 cb_ce_inv = 
-    [0]
+    [0] and ([4] and [3])
 
 cb_rd_wr = 
     [4]' and [3]
@@ -74,3 +75,6 @@ valid_rd_wr =
 
 valid_d_wr = 
     [4]
+
+cb_d_wr_control = 
+    [3]
