@@ -42,73 +42,47 @@ end decoder5to32;
 
 architecture structural of decoder5to32 is
     -- components
-    component and5
+    component decoder2to4
         port(
+            input0  : in std_logic;
+            input1  : in std_logic;
+            output0 : out std_logic;
+            output1 : out std_logic;
+            output2 : out std_logic;
+            output3 : out std_logic
+        );
+    end component;
+
+    component decoder3to8
+        port(
+            en      : in std_logic;
+            input0  : in std_logic;
             input1  : in std_logic;
             input2  : in std_logic;
-            input3  : in std_logic;
-            input4  : in std_logic;
-            input5  : in std_logic;
-            output  : out std_logic
+            output0 : out std_logic;
+            output1 : out std_logic;
+            output2 : out std_logic;
+            output3 : out std_logic;
+            output4 : out std_logic;
+            output5 : out std_logic;
+            output6 : out std_logic;
+            output7 : out std_logic
         );
     end component;
 
-    component inverter
-        port(
-            input   : in std_logic;
-            output  : out std_logic
-        );
-    end component;
-
-    for inv_0, inv_1, inv_2, inv_3, inv_4: inverter use entity work.inverter(structural);
-    for and5_0, and5_1, and5_2, and5_3, and5_4, and5_5, and5_6, and5_7, and5_8,
-    and5_9, and5_10, and5_11, and5_12, and5_13, and5_14, and5_15, and5_16, and5_17,
-    and5_18, and5_19, and5_20, and5_21, and5_22, and5_23, and5_24, and5_25, and5_26,
-    and5_27, and5_28, and5_29, and5_30, and5_31: and5 use entity work.and5(structural);
+    for dec2to4_0: decoder2to4 use entity work.decoder2to4(structural);
+    for dec3to8_0, dec3to8_1, dec3to8_2, dec3to8_3: decoder3to8 use entity work.decoder3to8(structural);
     
-    signal in0n, in1n, in2n, in3n, in4n: std_logic;
+    signal en0, en1, en2, en3: std_logic;
 
 begin
-    inv_0: inverter port map(input0, in0n);
-    inv_1: inverter port map(input1, in1n);
-    inv_2: inverter port map(input2, in2n);
-    inv_3: inverter port map(input3, in3n);
-    inv_4: inverter port map(input4, in4n);
 
-    and5_0:         and5 port map(in0n, in1n, in2n, in3n, in4n, output0);
-    and5_1:         and5 port map(input0, in1n, in2n, in3n, in4n, output1);
-    and5_2:         and5 port map(in0n, input1, in2n, in3n, in4n, output2);
-    and5_3:         and5 port map(input0, input1, in2n, in3n, in4n, output3);
-    and5_4:         and5 port map(in0n, in1n, input2, in3n, in4n, output4);
-    and5_5:         and5 port map(input0, in1n, input2, in3n, in4n, output5);
-    and5_6:         and5 port map(in0n, input1, input2, in3n, in4n, output6);
-    and5_7:         and5 port map(input0, input1, input2, in3n, in4n, output7);
-    and5_8:         and5 port map(in0n, in1n, in2n, input3, in4n, output8);
-    and5_9:         and5 port map(input0, in1n, in2n, input3, in4n, output9);
-    and5_10:        and5 port map(in0n, input1, in2n, input3, in4n, output10);
-    and5_11:        and5 port map(input0, input1, in2n, input3, in4n, output11);
-    and5_12:        and5 port map(in0n, in1n, input2, input3, in4n, output12);
-    and5_13:        and5 port map(input0, in1n, input2, input3, in4n, output13);
-    and5_14:        and5 port map(in0n, input1, input2, input3, in4n, output14);
-    and5_15:        and5 port map(input0, input1, input2, input3, in4n, output15);
-    and5_16:        and5 port map(in0n, in1n, in2n, in3n, input4, output16);
-    and5_17:        and5 port map(input0, in1n, in2n, in3n, input4, output17);
-    and5_18:        and5 port map(in0n, input1, in2n, in3n, input4, output18);
-    and5_19:        and5 port map(input0, input1, in2n, in3n, input4, output19);
-    and5_20:        and5 port map(in0n, in1n, input2, in3n, input4, output20);
-    and5_21:        and5 port map(input0, in1n, input2, in3n, input4, output21);
-    and5_22:        and5 port map(in0n, input1, input2, in3n, input4, output22);
-    and5_23:        and5 port map(input0, input1, input2, in3n, input4, output23);
-    and5_24:        and5 port map(in0n, in1n, in2n, input3, input4, output24);
-    and5_25:        and5 port map(input0, in1n, in2n, input3, input4, output25);
-    and5_26:        and5 port map(in0n, input1, in2n, input3, input4, output26);
-    and5_27:        and5 port map(input0, input1, in2n, input3, input4, output27);
-    and5_28:        and5 port map(in0n, in1n, input2, input3, input4, output28);
-    and5_29:        and5 port map(input0, in1n, input2, input3, input4, output29);
-    and5_30:        and5 port map(in0n, input1, input2, input3, input4, output30);
-    and5_31:        and5 port map(input0, input1, input2, input3, input4, output31);
-
-
+    dec2to4_0: decoder2to4 port map(input0(3), input0(4), en0, en1, en2, en3);
+    
+    dec3to8_0: decoder3to8 port map(en0, input0(0), input0(1), input0(2), output0, output1, output2, output3, output4, output5, output6, output7);
+    dec3to8_1: decoder3to8 port map(en1, input0(0), input0(1), input0(2), output8, output9, output10, output11, output12, output13, output14, output15);
+    dec3to8_2: decoder3to8 port map(en2, input0(0), input0(1), input0(2), output16, output17, output18, output19, output20, output21, output22, output23);
+    dec3to8_3: decoder3to8 port map(en3, input0(0), input0(1), input0(2), output24, output25, output26, output27, output28, output29, output30, output31);
 
 end structural;
 
