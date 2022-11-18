@@ -242,17 +242,37 @@ begin
         valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr
     );
 
-    counter: shiftreg8 port map(clk, shiftreg_input, shiftreg_rst, shiftreg_q);
 
-    -- TODO: select one line of shiftreg_q to be shiftreg_done
+    counter: shiftreg8 port map(clk, shiftreg_input, shiftreg_rst, shiftreg_q);
+    buff_shiftreg_done: buff port map(shiftreg_q(6), shiftreg_done);
+    
 
     cb_ce_gen_0: cb_ce_gen port map(cb_ce, cb_ce_adj, cb_ce_inv, clk, cb_ce_out);
-
-    cache: cache_block port map(
+    cb: cache_block port map(
         cpu_data_stored, cb_ce_out, cb_rd_wr, 
         cpu_add_stored(2), cpu_add_stored(3), cb_offset0, cb_offset1,
         cb_d_rd
     );
+
+    bus_creator2_tb_d_wr: bus_creator2 port map(cpu_add_stored(5), cpu_add_stored(4), tb_d_wr);
+    tb: tag_block port map(tb_d_wr, tb_ce, tb_rd_wr, cpu_add_stored(2), cpu_add_stored(3), tb_d_rd);
+
+    valid_ce_gen_0: valid_ce_gen port map(
+        cpu_add_stored(2), cpu_add_stored(3),
+        valid_ce, valid_ce_all, 
+        valid_ce0, valid_ce1, valid_ce2, valid_ce3
+    );
+    valid0: cache_cell1 port map(valid_d_wr, valid_ce0, valid_rd_wr, valid_d_rd);
+    valid1: cache_cell1 port map(valid_d_wr, valid_ce1, valid_rd_wr, valid_d_rd);
+    valid2: cache_cell1 port map(valid_d_wr, valid_ce2, valid_rd_wr, valid_d_rd);
+    valid3: cache_cell1 port map(valid_d_wr, valid_ce3, valid_rd_wr, valid_d_rd);
+
+    bus_creator2_hm_tag: bus_creator2 port map(cpu_add_stored(3), cpu_add_stored(2), hm_tag);
+    hm: hit_miss_detector port map(tb_d_rd, hm_tag, valid_d_rd, hit_miss);
+    
+
+
+    
     
     -- cb_d_rd goes to C_d output enable
     -- hit miss detection
