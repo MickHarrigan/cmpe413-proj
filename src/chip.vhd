@@ -141,7 +141,14 @@ architecture structural of chip is
         );
     end component;
     -- hit miss detector
-    -- unimplemented!()
+    component hit_miss_detector
+        port(
+            input1  : in std_logic_vector(1 downto 0);
+            input2  : in std_logic_vector(1 downto 0);
+            valid   : in std_logic;
+            output  : out std_logic
+        );
+    end component;
     
 begin
     
