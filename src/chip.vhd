@@ -364,15 +364,4 @@ begin
     );
     oe_mem_add: output_enable6 port map(mem_add_out, mem_add_oe, mem_add);
 
-    
-    
-    -- cb_d_rd goes to C_d output enable
-    -- hit miss detection
-    -- M_a output enable (cpu_add_stored top 4 bits : 00)
-    -- make the signals ~real~ from the sm
-    -- compile?
-    -- PROFIT
-    
-    -- make for statements
-
 end structural;
