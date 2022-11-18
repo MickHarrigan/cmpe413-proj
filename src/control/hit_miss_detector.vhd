@@ -32,6 +32,9 @@ architecture structural of hit_miss_detector is
         );
     end component;
 
+    for comp2_0: comparator2 use entity work.comparator2(structural);
+    for and2_0: and2 use entity work.and2(structural);
+
     signal x: std_logic;
 
 begin
