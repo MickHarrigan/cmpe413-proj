@@ -207,6 +207,10 @@ architecture structural of chip is
     signal shiftreg_q: std_logic_vector(7 downto 0);
     signal cb_ce_out: std_logic;
     signal cb_d_rd: std_logic_vector(7 downto 0);
+    signal valid_ce0, valid_ce1, valid_ce2, valid_ce3: std_logic;
+    signal tb_d_rd, tb_d_wr: std_logic_vector(1 downto 0);
+    signal hm_tag: std_logic_vector(1 downto 0);
+
     
 begin
     -- connect cpu_add to 6 bit register
@@ -242,7 +246,7 @@ begin
 
     -- TODO: select one line of shiftreg_q to be shiftreg_done
 
-    cb_ce_gen_0: cb_ce_gen port map(cb_ce, cb_ce_adj, cb_ce_inv, clk, cb_ce_out)
+    cb_ce_gen_0: cb_ce_gen port map(cb_ce, cb_ce_adj, cb_ce_inv, clk, cb_ce_out);
 
     cache: cache_block port map(
         cpu_data_stored, cb_ce_out, cb_rd_wr, 
