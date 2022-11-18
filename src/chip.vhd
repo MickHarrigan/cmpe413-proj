@@ -195,18 +195,23 @@ architecture structural of chip is
     signal cpu_add_stored: std_logic_vector(5 downto 0);
     signal cpu_rd_wrn_stored: std_logic;
     signal cpu_data_stored: std_logic_vector(7 downto 0);
-    signal shiftreg_done: std_logic;
-    signal hit_miss: std_logic;
-    signal shiftreg_input, shiftreg_rst: std_logic;
-    signal cpu_data_oe, mem_add_oe: std_logic;
-    signal mem_enable: std_logic;
-    signal cb_ce, cb_ce_adj, cb_ce_inv: std_logic;
-    signal cb_rd_wr, cb_offset1, cb_offset0: std_logic;
-    signal tb_ce, tb_rd_wr: std_logic;
-    signal valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr: std_logic;
+
+    signal shiftreg_input, shiftreg_rst, shiftreg_done: std_logic;
     signal shiftreg_q: std_logic_vector(7 downto 0);
-    signal cb_ce_out: std_logic;
+
+    signal cb_ce, cb_ce_adj, cb_ce_inv, cb_ce_out: std_logic;
+    signal cb_rd_wr, cb_offset1, cb_offset0: std_logic;
     signal cb_d_rd: std_logic_vector(7 downto 0);
+
+    signal tb_ce, tb_rd_wr: std_logic;
+
+    signal valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr: std_logic;
+
+    signal hit_miss: std_logic;
+    
+    signal cpu_data_oe, mem_add_oe: std_logic;
+
+    signal mem_enable: std_logic;
     
 begin
     -- connect cpu_add to 6 bit register
