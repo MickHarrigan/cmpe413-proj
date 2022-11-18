@@ -42,8 +42,8 @@ begin
     inv_1: inverter port map(input1, in1n);
 
     and2_0: and2 port map(in0n, in1n, output0);
-    and2_1: and2 port map(in0n, input1, output1);
-    and2_2: and2 port map(input0, in1n, output2);
+    and2_1: and2 port map(input0, in1n, output1);
+    and2_2: and2 port map(in0n, input1, output2);
     and2_3: and2 port map(input0, input1, output3);
 
 end structural;

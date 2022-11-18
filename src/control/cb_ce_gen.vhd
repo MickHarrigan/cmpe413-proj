@@ -54,6 +54,6 @@ begin
 
     xor2_0: xor2 port map(cb_ce_inv, cea, ceg);
 
-    mux2_0: mux2 port map(ceg, cb_ce, cb_ce_adj, cb_ce_out);
+    mux2_0: mux2 port map(cb_ce, ceg, cb_ce_adj, cb_ce_out);
 
 end structural;
