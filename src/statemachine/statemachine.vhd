@@ -203,6 +203,9 @@ architecture structural of statemachine is
         is_state28, is_state29, is_state30, is_state31
         : std_logic;
 
+    signal cpu_rd_wrn_n, cpu_start_n, cpu_reset_n, shiftreg_done_n, hit_miss_n
+        : std_logic;
+
     signal next00, next01, next08, next09, next12, 
         next13, next14, next15, next20, next21, 
         next22, next24, next25, next26, next27, 
@@ -327,7 +330,21 @@ begin
 
 
     -- ---------- Next state logic ----------
+    inverter_1: inverter port map(cpu_rd_wrn, cpu_rd_wrn_n);
+    inverter_2: inverter port map(cpu_start, cpu_start_n);
+    inverter_3: inverter port map(cpu_reset, cpu_reset_n);
+    inverter_4: inverter port map(shiftreg_done, shiftreg_done_n);
+    inverter_5: inverter port map(hit_miss, hit_miss_n);
+
+    -- idle
     
+    
+
+
+
+
+    -- idle
+
     
 
 

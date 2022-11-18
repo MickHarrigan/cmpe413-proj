@@ -26,4 +26,3 @@ begin
     output <= input1 and input2 and input3 and input4 and input5;
 
 end structural;
-
