@@ -78,6 +78,25 @@ architecture structural of statemachine is
         );
     end component;
 
+    component and3
+        port(
+            input1  : in std_logic;
+            input2  : in std_logic;
+            input3  : in std_logic;
+            output  : out std_logic
+        );
+    end component;
+
+    component and4
+        port(
+            input1  : in std_logic;
+            input2  : in std_logic;
+            input3  : in std_logic;
+            input4  : in std_logic;
+            output  : out std_logic
+        );
+    end component;
+
     component or2
         port(
             input1  : in std_logic;
@@ -92,6 +111,17 @@ architecture structural of statemachine is
             input2: in std_logic;
             input3: in std_logic;
             input4: in std_logic;
+            output: out std_logic
+        );
+    end component;
+
+    component or5
+        port(
+            input1: in std_logic;
+            input2: in std_logic;
+            input3: in std_logic;
+            input4: in std_logic;
+            input5: in std_logic;
             output: out std_logic
         );
     end component;
@@ -150,34 +180,72 @@ architecture structural of statemachine is
         );
     end component;
 
+    component decoder5to32
+        port(
+            input       : in std_logic_vector(4 downto 0);
+            output0     : out std_logic;
+            output1     : out std_logic;
+            output2     : out std_logic;
+            output3     : out std_logic;
+            output4     : out std_logic;
+            output5     : out std_logic;
+            output6     : out std_logic;
+            output7     : out std_logic;
+            output8     : out std_logic;
+            output9     : out std_logic;
+            output10    : out std_logic;
+            output11    : out std_logic;
+            output12    : out std_logic;
+            output13    : out std_logic;
+            output14    : out std_logic;
+            output15    : out std_logic;
+            output16    : out std_logic;
+            output17    : out std_logic;
+            output18    : out std_logic;
+            output19    : out std_logic;
+            output20    : out std_logic;
+            output21    : out std_logic;
+            output22    : out std_logic;
+            output23    : out std_logic;
+            output24    : out std_logic;
+            output25    : out std_logic;
+            output26    : out std_logic;
+            output27    : out std_logic;
+            output28    : out std_logic;
+            output29    : out std_logic;
+            output30    : out std_logic;
+            output31    : out std_logic
+        );
+    end component;
+
 
     for tie_high_0: tie_high use entity work.tie_high(structural);
+
     for tie_low_0: tie_low use entity work.tie_low(structural);
 
     for inverter_0: inverter use entity work.inverter(structural);
-    for and2_0, and2_1: and2 use entity work.and2(structural);
-    for or2_0: or2 use entity work.or2(structural);
+    
+    for and2_0, and2_1, and2_2, and2_3, and2_4, and2_5, and2_6
+        : and2 use entity work.and2(structural);
+
+    for and3_0: and3 use entity work.and3(structural);
+
+    for and4_0, and4_1: and4 use entity work.and4(structural);
+    
+    for or2_0, or2_1, or2_2, or2_3
+        : or2 use entity work.or2(structural);
+
+    for or5_0: or5 use entity work.or5(structural);
+
     for xor2_0: xor2 use entity work.xor2(structural);
 
     for buff_0, buff_1, buff_2, buff_3, buff_4, buff_5, buff_6, buff_7, 
         buff_8, buff_9, buff_10, buff_11
         : buff use entity work.buff(structural);
 
-    for bus_creator5_00, bus_creator5_01, bus_creator5_08, bus_creator5_09, 
-        bus_creator5_12, bus_creator5_13, bus_creator5_14, bus_creator5_15, 
-        bus_creator5_20, bus_creator5_21, bus_creator5_22, bus_creator5_24, 
-        bus_creator5_25, bus_creator5_26, bus_creator5_27, bus_creator5_28, 
-        bus_creator5_29, bus_creator5_30, bus_creator5_31
-        : bus_creator5 use entity work.bus_creator5(structural);
+    for dffer5_0: dffer5 use entity work.dffer5(structural);
 
-    for comparator5_00, comparator5_01, comparator5_08, comparator5_09, 
-        comparator5_12, comparator5_13, comparator5_14, comparator5_15, 
-        comparator5_20, comparator5_21, comparator5_22, comparator5_24, 
-        comparator5_25, comparator5_26, comparator5_27, comparator5_28, 
-        comparator5_29, comparator5_30, comparator5_31
-        : comparator5 use entity work.comparator5(structural); 
-
-    for dffer5_state: dffer5 use entity work.dffer5(structural);
+    for decoder5to32_0: decoder5to32 use entity work.decoder5to32(structural);
 
     
     -- Analog 1 and 0
@@ -189,7 +257,8 @@ architecture structural of statemachine is
     -- Intermediate signals
     signal s4xor3, s4and3, s4n, is_state_12_24_20: std_logic;
 
-    signal s00, s01: std_logic;
+    signal s00, s01, s02, s03, s04, s05, s06, s07, s08, s09, s10
+        : std_logic;
 
     -- TODO delete
     signal state00, state01, state08, state09, state12, state13, state14,
@@ -216,57 +285,25 @@ begin
     tie_high_0: tie_high port map(b1);
     tie_low_0: tie_low port map(b0);
 
-    -- TODO delete
-    -- Generate state codes
-    bus_creator5_00: bus_creator5 port map(b0, b0, b0, b0, b0, state00);
-    bus_creator5_01: bus_creator5 port map(b0, b0, b0, b0, b1, state01);
-    bus_creator5_08: bus_creator5 port map(b0, b1, b0, b0, b0, state08);
-    bus_creator5_09: bus_creator5 port map(b0, b1, b0, b0, b1, state09);
-    bus_creator5_12: bus_creator5 port map(b0, b1, b1, b0, b0, state12);
-    bus_creator5_13: bus_creator5 port map(b0, b1, b1, b0, b1, state13);
-    bus_creator5_14: bus_creator5 port map(b0, b1, b1, b1, b0, state14);
-    bus_creator5_15: bus_creator5 port map(b0, b1, b1, b1, b1, state15);
-    bus_creator5_20: bus_creator5 port map(b1, b0, b1, b0, b0, state20);
-    bus_creator5_21: bus_creator5 port map(b1, b0, b1, b0, b1, state21);
-    bus_creator5_22: bus_creator5 port map(b1, b0, b1, b1, b0, state22);
-    bus_creator5_24: bus_creator5 port map(b1, b1, b0, b0, b0, state24);
-    bus_creator5_25: bus_creator5 port map(b1, b1, b0, b0, b1, state25);
-    bus_creator5_26: bus_creator5 port map(b1, b1, b0, b1, b0, state26);
-    bus_creator5_27: bus_creator5 port map(b1, b1, b0, b1, b1, state27);
-    bus_creator5_28: bus_creator5 port map(b1, b1, b1, b0, b0, state28);
-    bus_creator5_29: bus_creator5 port map(b1, b1, b1, b0, b1, state29);
-    bus_creator5_30: bus_creator5 port map(b1, b1, b1, b1, b0, state30);
-    bus_creator5_31: bus_creator5 port map(b1, b1, b1, b1, b1, state31);
-    
-    -- TODO replace with decoder5to32, with opens in gaps
-    -- Compare current state with each state code
-    comparator5_00: comparator5 port map(state, state00, is_state00);
-    comparator5_01: comparator5 port map(state, state01, is_state01);
-    comparator5_08: comparator5 port map(state, state08, is_state08);
-    comparator5_09: comparator5 port map(state, state09, is_state09);
-    comparator5_12: comparator5 port map(state, state12, is_state12);
-    comparator5_13: comparator5 port map(state, state13, is_state13);
-    comparator5_14: comparator5 port map(state, state14, is_state14);
-    comparator5_15: comparator5 port map(state, state15, is_state15);
-    comparator5_20: comparator5 port map(state, state20, is_state20);
-    comparator5_21: comparator5 port map(state, state21, is_state21);
-    comparator5_22: comparator5 port map(state, state22, is_state22);
-    comparator5_24: comparator5 port map(state, state24, is_state24);
-    comparator5_25: comparator5 port map(state, state25, is_state25);
-    comparator5_26: comparator5 port map(state, state26, is_state26);
-    comparator5_27: comparator5 port map(state, state27, is_state27);
-    comparator5_28: comparator5 port map(state, state28, is_state28);
-    comparator5_29: comparator5 port map(state, state29, is_state29);
-    comparator5_30: comparator5 port map(state, state30, is_state30);
-    comparator5_31: comparator5 port map(state, state31, is_state31);
+    decoder5to32_0: decoder5to32 port map(
+        state,
+        is_state00, is_state01, open, open, 
+        open, open, open, open, 
+        is_state08, is_state09, open, open, 
+        is_state12, is_state13, is_state14, is_state15, 
+        open, open, open, open, 
+        is_state20, is_state21, is_state22, open, 
+        is_state24, is_state25, is_state26, is_state27, 
+        is_state28, is_state29, is_state30, is_state31
+    );
 
     -- TODO add encoder32to5
     -- inputs: next00 - next31, with opens in gaps
     -- output: nextstate
 
 
-    -- ---------- Transition to next state ----------
-    dffer5_state: dffer5 port map(nextstate, clk, b1, b0, state, open);
+    -- ---------- Transition to next state and store ----------
+    dffer5_0: dffer5 port map(nextstate, clk, b1, b0, state, open);
 
 
     -- ---------- Output logic ----------
@@ -336,17 +373,30 @@ begin
     inverter_4: inverter port map(shiftreg_done, shiftreg_done_n);
     inverter_5: inverter port map(hit_miss, hit_miss_n);
 
-    -- idle
+    -- -> idle
+    and3_0: and3 port map(is_state00, cpu_start_n, cpu_reset_n, s02);    -- idle -> idle
+    and2_3: and2 port map(is_state09, cpu_reset_n, s03);                 -- rd_miss_send -> idle
+    and2_4: and2 port map(is_state08, cpu_reset_n, s04);                 -- rd_hit -> idle
+    and2_5: and2 port map(is_state22, cpu_reset_n, s05);                 -- wr_miss -> idle
+    and2_6: and2 port map(is_state21, cpu_reset_n, s06);                 -- wr_hit -> idle
+    and3_1: and3 port map(is_state01, cpu_start_n, cpu_reset_n, s07);    -- reset -> idle
+
+    or5_0: or5 port map(s02, s03, s04, s05, s06, s08);
+    or2_2: or2 port map(s07, s08, next00);
+
+    -- -> rd_init
+    and4_0: and4 port map(is_state00, cpu_rd_wrn, cpu_start, cpu_reset_n, s09);    -- idle -> rd_init
+    and4_1: and4 port map(is_state01, cpu_rd_wrn, cpu_start, cpu_reset, s10);      -- reset -> rd_init
+
+    or2_3: or2 port map(s09, s10, next12);
+
+
     
     
 
 
 
-
-    -- idle
-
     
-
 
 
 

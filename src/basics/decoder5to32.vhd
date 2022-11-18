@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.all;
 
 entity decoder5to32 is
     port(
-        input0      : in std_logic_vector(4 downto 0);
+        input       : in std_logic_vector(4 downto 0);
         output0     : out std_logic;
         output1     : out std_logic;
         output2     : out std_logic;
@@ -77,12 +77,12 @@ architecture structural of decoder5to32 is
 
 begin
 
-    dec2to4_0: decoder2to4 port map(input0(3), input0(4), en0, en1, en2, en3);
+    dec2to4_0: decoder2to4 port map(input(3), input(4), en0, en1, en2, en3);
     
-    dec3to8_0: decoder3to8 port map(en0, input0(0), input0(1), input0(2), output0, output1, output2, output3, output4, output5, output6, output7);
-    dec3to8_1: decoder3to8 port map(en1, input0(0), input0(1), input0(2), output8, output9, output10, output11, output12, output13, output14, output15);
-    dec3to8_2: decoder3to8 port map(en2, input0(0), input0(1), input0(2), output16, output17, output18, output19, output20, output21, output22, output23);
-    dec3to8_3: decoder3to8 port map(en3, input0(0), input0(1), input0(2), output24, output25, output26, output27, output28, output29, output30, output31);
+    dec3to8_0: decoder3to8 port map(en0, input(0), input(1), input(2), output0, output1, output2, output3, output4, output5, output6, output7);
+    dec3to8_1: decoder3to8 port map(en1, input(0), input(1), input(2), output8, output9, output10, output11, output12, output13, output14, output15);
+    dec3to8_2: decoder3to8 port map(en2, input(0), input(1), input(2), output16, output17, output18, output19, output20, output21, output22, output23);
+    dec3to8_3: decoder3to8 port map(en3, input(0), input(1), input(2), output24, output25, output26, output27, output28, output29, output30, output31);
 
 end structural;
 
