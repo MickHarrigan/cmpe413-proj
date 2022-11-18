@@ -79,6 +79,19 @@ architecture structural of chip is
         );
     end component;
 
+    component valid_ce_gen
+        port(
+            index0:         in std_logic;
+            index1:         in std_logic;
+            valid_ce:       in std_logic;
+            valid_ce_all:   in std_logic;
+            valid_ce0:     out std_logic;
+            valid_ce1:     out std_logic;
+            valid_ce2:     out std_logic;
+            valid_ce3:     out std_logic
+        );
+    end component;
+
     -- cache block
     component cache_block
         port(
@@ -112,6 +125,18 @@ architecture structural of chip is
             d_rd    : out std_logic
         );
     end component;
+
+    component dffer
+        port(
+            d       : in std_logic;
+            clk     : in std_logic;
+            ce      : in std_logic;
+            rst     : in std_logic;
+            q       : out std_logic;
+            qbar    : out std_logic
+        );
+    end component;
+
     -- registers (8 and 6)
     component dffer6
         port(
@@ -134,6 +159,22 @@ architecture structural of chip is
             qbar    : out std_logic_vector(7 downto 0)
         );
     end component;
+
+    component buff
+        port(
+            input   : in std_logic;
+            output  : out std_logic
+        );
+    end component;
+
+    component bus_creator2
+        port(
+            input1  : in std_logic;
+            input0  : in std_logic;
+            output  : out std_logic_vector(1 downto 0)
+        );
+    end component;
+
     -- oe_d
     component output_enable8
         port(
