@@ -9,7 +9,7 @@ FILES_CONTROL = src/control/* $(FILES_BASICS)
 FILES_COUNTER = src/counter/* $(FILES_BASICS)
 FILES_TAG = src/tag/* $(FILES_CACHE)
 FILES_STATEMACHINE = src/statemachine/* $(FILES_BASICS)
-FILES_CHIP = src/chip.vhd
+FILES_CHIP = src/chip.vhd $(FILES_BASICS) $(FILES_CACHE) $(FILES_CONTROL) $(FILES_COUNTER) $(FILES_TAG) $(FILES_STATEMACHINE)
 
 # Designs
 
