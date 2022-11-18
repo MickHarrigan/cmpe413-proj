@@ -132,39 +132,64 @@ architecture structural of chip is
         );
     end component;
 
-    component dffer
-        port(
-            d       : in std_logic;
-            clk     : in std_logic;
-            ce      : in std_logic;
-            rst     : in std_logic;
-            q       : out std_logic;
-            qbar    : out std_logic
-        );
+    -- component dffer
+    --     port(
+    --         d       : in std_logic;
+    --         clk     : in std_logic;
+    --         ce      : in std_logic;
+    --         rst     : in std_logic;
+    --         q       : out std_logic;
+    --         qbar    : out std_logic
+    --     );
+    -- end component;
+
+    component Dlatch
+        port ( d   : in  std_logic;
+         clk : in  std_logic;
+         q   : out std_logic;
+         qbar: out std_logic);
     end component;
 
-    -- registers (8 and 6)
-    component dffer6
+    component dlatch6
         port(
-            d       : in std_logic_vector(5 downto 0);
-            clk     : in std_logic;
-            ce      : in std_logic;
-            rst     : in std_logic;
-            q       : out std_logic_vector(5 downto 0);
-            qbar    : out std_logic_vector(5 downto 0)
-        );
+        d       : in std_logic_vector(5 downto 0);
+        clk     : in std_logic;
+        q       : out std_logic_vector(5 downto 0);
+        qbar    : out std_logic_vector(5 downto 0)
+    );
     end component;
 
-    component dffer8
+    component dlatch8
         port(
-            d       : in std_logic_vector(7 downto 0);
-            clk     : in std_logic;
-            ce      : in std_logic;
-            rst     : in std_logic;
-            q       : out std_logic_vector(7 downto 0);
-            qbar    : out std_logic_vector(7 downto 0)
-        );
+        d       : in std_logic_vector(7 downto 0);
+        clk     : in std_logic;
+        q       : out std_logic_vector(7 downto 0);
+        qbar    : out std_logic_vector(7 downto 0)
+    );
     end component;
+
+    -- -- registers (8 and 6)
+    -- component dffer6
+    --     port(
+    --         d       : in std_logic_vector(5 downto 0);
+    --         clk     : in std_logic;
+    --         ce      : in std_logic;
+    --         rst     : in std_logic;
+    --         q       : out std_logic_vector(5 downto 0);
+    --         qbar    : out std_logic_vector(5 downto 0)
+    --     );
+    -- end component;
+
+    -- component dffer8
+    --     port(
+    --         d       : in std_logic_vector(7 downto 0);
+    --         clk     : in std_logic;
+    --         ce      : in std_logic;
+    --         rst     : in std_logic;
+    --         q       : out std_logic_vector(7 downto 0);
+    --         qbar    : out std_logic_vector(7 downto 0)
+    --     );
+    -- end component;
 
     component buff
         port(
@@ -230,11 +255,14 @@ architecture structural of chip is
 
     for tie_low_0: tie_low use entity work.tie_low(structural);
 
-    for reg_cpu_add: dffer6 use entity work.dffer6(structural);
+    -- for reg_cpu_add: dffer6 use entity work.dffer6(structural);
+    for latch_cpu_add: dlatch6 use entity work.dlatch6(structural);
 
-    for reg_cpu_data: dffer8 use entity work.dffer8(structural);
+    -- for reg_cpu_data: dffer8 use entity work.dffer8(structural);
+    for latch_cpu_data: dlatch8 use entity work.dlatch8(structural);
 
-    for reg_cpu_rd_wrn: dffer use entity work.dffer(structural);
+    -- for reg_cpu_rd_wrn: dffer use entity work.dffer(structural);
+    for latch_cpu_rd_wrn: dlatch use entity work.dlatch(structural);
 
     for sm: statemachine use entity work.statemachine(structural);
 
@@ -294,18 +322,23 @@ architecture structural of chip is
 begin
     tie_low_0: tie_low port map(b0);
 
+
+    -- NOTE: Make sure to add these back if the dlatches fail.
     -- connect cpu_add to 6 bit register
     -- ce is whatever enables the address register, same for rst
     -- wire_to_cache is a 5 downto 0 vector that goes to tag comparator (hit miss) and cache_block index/offset
-    reg_cpu_add: dffer6 port map(cpu_add, clk, start, reset, cpu_add_stored, open);
+    -- reg_cpu_add: dffer6 port map(cpu_add, clk, start, reset, cpu_add_stored, open);
+    latch_cpu_add: dlatch6 port map(cpu_add, start, cpu_add_stored, open);
 
     -- ce/rst same as cpu_add
     -- wire_to_sm connects to state machine for read/write
-    reg_cpu_rd_wrn: dffer port map(cpu_rd_wrn, clk, start, reset, cpu_rd_wrn_stored, open);
+    -- reg_cpu_rd_wrn: dffer port map(cpu_rd_wrn, clk, start, reset, cpu_rd_wrn_stored, open);
+    latch_cpu_rd_wrn: Dlatch port map(cpu_rd_wrn, start, cpu_rd_wrn_stored, open);
 
     -- ce/rst same as cpu_add
     -- no clue where this goes directly with somewhere
-    reg_cpu_data: dffer8 port map(cpu_data, clk, start, reset, cpu_data_stored, open);
+    -- reg_cpu_data: dffer8 port map(cpu_data, clk, start, reset, cpu_data_stored, open);
+    latch_cpu_data: dlatch8 port map(cpu_data, start, cpu_data_stored, open);
 
     sm: statemachine port map(
         clk, 
