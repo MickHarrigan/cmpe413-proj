@@ -258,9 +258,13 @@ architecture structural of statemachine is
     for or2_0, or2_1, or2_2, or2_3, or2_4, or2_5
         : or2 use entity work.or2(structural);
 
+    for or4_0, or4_1, or4_2: or4 use entity work.or4(structural);
+
     for or5_0: or5 use entity work.or5(structural);
 
     for xor2_0: xor2 use entity work.xor2(structural);
+
+    for mux2_0, mux2_1: mux2 use entity work.mux2(structural);
 
     for buff_0, buff_1, buff_2, buff_3, buff_4, buff_5, buff_6, buff_7, 
         buff_8, buff_9, buff_10, buff_11, buff_12
