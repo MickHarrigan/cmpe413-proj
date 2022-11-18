@@ -244,7 +244,8 @@ architecture structural of chip is
     signal cb_rd_wr, cb_offset1, cb_offset0: std_logic;
     signal cb_d_rd: std_logic_vector(7 downto 0);
 
-    signal tb_ce, tb_rd_wr, tb_d_wr, tb_d_rd: std_logic;
+    signal tb_ce, tb_rd_wr: std_logic; 
+    signal tb_d_wr, tb_d_rd: std_logic_vector(1 downto 0);
 
     signal valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr: std_logic;
     signal valid_ce0, valid_ce1, valid_ce2, valid_ce3: std_logic;
