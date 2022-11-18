@@ -8,6 +8,8 @@ FILES_CACHE = src/cache/* $(FILES_BASICS)
 FILES_CONTROL = src/control/* $(FILES_BASICS) $(FILES_CACHE)
 FILES_CHIP = src/chip.vhd $(FILES_BASICS) $(FILES_CACHE) $(FILES_CONTROL)
 
+default: chip_test
+
 # Designs
 
 primitives: $(FILES_PRIMITIVES)
