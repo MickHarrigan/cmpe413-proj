@@ -338,7 +338,7 @@ begin
 
 
     -- ---------- Transition to next state and store ----------
-    dffer5_0: dffer5 port map(nextstate, clk, b1, b0, state, open);
+    dffer5_0: dffer5 port map(nextstate, clk, b1, reset, state, open);
 
 
     -- ---------- Output logic ----------
