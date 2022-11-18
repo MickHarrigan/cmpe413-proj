@@ -33,6 +33,17 @@ chip: $(FILES_CHIP)
 
 # Testbenches
 
+chip_test: $(TESTBENCHES)/example_test1/chip_test.vhd chip
+	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var -smartorder $(TESTBENCHES)/example_test1/chip_test.vhd
+
+	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var chip_test
+
+	$(CADENCE)/run_ncsim.bash -input $(TESTBENCHES)/example_test1/run.ncsim -messages -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var chip_test
+
+
 #dffer_tb: TESTBENCHES/dffer_tb.vhd $(FILES_BASICS)
 #	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 #		-hdlvar $(CADENCE)/hdl.var -smartorder dffer_tb.vhd

@@ -51,6 +51,12 @@ architecture structural of encoder32to5 is
         );
     end component;
 
+    for or4_0, or4_1, or4_2, or4_3, or4_4, or4_5, 
+        or4_6, or4_7, or4_8, or4_9, or4_10, or4_11, 
+        or4_12, or4_13, or4_14, or4_15, or4_16, or4_17, 
+        or4_18, or4_19, or4_20, or4_21, or4_22, or4_23, 
+        or4_24: or4 use entity work.or4(structural); 
+
     signal a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,w,x,y,z: std_logic;
 
 
