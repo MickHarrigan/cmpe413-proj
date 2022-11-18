@@ -211,26 +211,36 @@ architecture structural of chip is
     end component;
 
 
-    for sm: statemachine use entity work.statemachine(structural);
-
-    for cb: cache_block use entity work.cache_block(structural);
-
-    for tb: tag_block use entity work.tag_block(structural);
-
-    for valid0, valid1, valid2, valid3
-        : cache_cell1 use entity work.cache_cell1(structural);
-
     for reg_cpu_add: dffer6 use entity work.dffer6(structural);
 
     for reg_cpu_data: dffer8 use entity work.dffer8(structural);
 
-    for oe_mem_add: output_enable6 use entity work.output_enable6(structural);
+    for reg_cpu_rd_wrn: dffer use entity work.dffer(structural);
 
-    for oe_cpu_data: output_enable8 use entity work.output_enable8(structural);
+    for sm: statemachine use entity work.statemachine(structural);
 
     for counter: shiftreg8 use entity work.shiftreg(structural);
 
+    for buff_shiftreg_done: buff use entity work.buff(structural);
+
+    for cb_ce_gen_0: cb_ce_gen use entity work.cb_ce_gen(structural);
+
+    for cb: cache_block use entity work.cache_block(structural);
+
+    for bus_creator2_tb_d_wr, bus_creator2_hm_tag: bus_creator2 use entity work.bus_creator2(structural);
+
+    for tb: tag_block use entity work.tag_block(structural);
+
+    for valid_ce_gen_0: valid_ce_gen use entity work.valid_ce_gen(structural);
+
+    for valid0, valid1, valid2, valid3
+        : cache_cell1 use entity work.cache_cell1(structural);
+
     for hm: hit_miss_detector use entity work.hit_miss_detector(structural);
+
+    for oe_mem_add: output_enable6 use entity work.output_enable6(structural);
+
+    for oe_cpu_data: output_enable8 use entity work.output_enable8(structural);
 
     
     signal cpu_add_stored: std_logic_vector(5 downto 0);
