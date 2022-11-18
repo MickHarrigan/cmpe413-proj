@@ -36,6 +36,6 @@ entity encoder32to5 is
         input29     : in std_logic;
         input30     : in std_logic;
         input31     : in std_logic;
-        output0     : out std_logic_vector(4 downto 0);
+        output0     : out std_logic_vector(4 downto 0)
     );
 end encoder32to5;

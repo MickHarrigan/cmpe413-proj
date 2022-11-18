@@ -36,7 +36,7 @@ entity decoder5to32 is
         output28    : out std_logic;
         output29    : out std_logic;
         output30    : out std_logic;
-        output31    : out std_logic;
+        output31    : out std_logic
     );
 end decoder5to32;
 
