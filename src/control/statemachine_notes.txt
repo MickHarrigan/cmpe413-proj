@@ -1,24 +1,6 @@
---- State code bit meanings ---
-
-00xxx: misc
-
-01xxx: Read (misc)
-    01Axx:
-        cpu_busy = A
-
-10xxx: Write
-    10Axx:
-        cpu_busy = A
-
-11xxx: Read (write data from mem)
-    xxABC:
-        cb_offset = AB
-        cb_ce_inv = C
-
-
 --- Pseudocode output equations ---
 [brackets] are bit positions of state code
-"state" is the decimal value of [4:0]
+"state" is the decimal value of [3:0]
 
 cpu_busy = 
     (([4] xor [3]) and [2]) or ([4] and [3])
