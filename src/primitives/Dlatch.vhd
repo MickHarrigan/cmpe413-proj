@@ -17,17 +17,21 @@ end Dlatch;
 
 architecture structural of Dlatch is 
 
- 
-  
 begin
-  
-  output: process (d,clk)                  
+  --output: process (d,clk)
+  --begin     
+  --  if clk = '1' then
+  --    q <= d;
+  --    qbar <= not d;
+  --  end if;
+  --end process output;
 
-  begin                           
-    if clk = '1' then 
-    q <= d;
-    qbar <= not d ;
- end if; 
- end process output;        
-                             
+  output: process (clk)
+  begin
+    if(clk = '1') then
+      q <= d;
+      qbar <= not d;
+    end if;
+  end process output;
+
 end structural;  

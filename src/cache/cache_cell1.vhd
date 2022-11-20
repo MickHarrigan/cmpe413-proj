@@ -1,4 +1,4 @@
--- 1-bit cache cell
+-- 1-bit cache cell, using positive edge-triggered dffer
 
 library STD;
 library IEEE;
@@ -9,15 +9,27 @@ entity cache_cell1 is
         d_wr    : in std_logic;
         ce      : in std_logic;
         rd_wr   : in std_logic;
-        d_rd    : out std_logic
+        d_rd    : out std_logic;
+        clk     : in std_logic
     );
 end cache_cell1;
 
 architecture structural of cache_cell1 is
-    component Dlatch
+    --component Dlatch TODO
+    --    port(
+    --        d       : in std_logic;
+    --        clk     : in std_logic;
+    --        q       : out std_logic;
+    --        qbar    : out std_logic
+    --    );
+    --end component;
+
+    component dffer
         port(
             d       : in std_logic;
             clk     : in std_logic;
+            ce      : in std_logic;
+            rst     : in std_logic;
             q       : out std_logic;
             qbar    : out std_logic
         );
@@ -48,22 +60,32 @@ architecture structural of cache_cell1 is
         );
     end component;
 
-    for Dlatch_0: Dlatch use entity work.Dlatch(structural);
+    component tie_low
+        port(
+            output: out std_logic
+        );
+    end component;
+
+    --for Dlatch_0: Dlatch use entity work.Dlatch(structural); TODO
+    for dffer_0: dffer use entity work.dffer(structural);
     for tx_0: tx use entity work.tx(structural);
-    for inverter_0: inverter use entity work.inverter(structural);
+    for inverter_0, inverter_1: inverter use entity work.inverter(structural);
     for cache_decoder_0: cache_decoder use entity work.cache_decoder(structural);
+    for tie_low_0: tie_low use entity work.tie_low(structural);
     
-    signal we: std_logic;
-    signal re: std_logic;
-    signal re_n: std_logic;
-    signal q: std_logic;
+    signal we, re, re_n, q, b0, clkn: std_logic;
     
 begin
-    Dlatch_0: Dlatch port map(d_wr, we, q, open);
+    tie_low_0: tie_low port map(b0);
+
+    inverter_0: inverter port map(clk, clkn);
+
+    --Dlatch_0: Dlatch port map(d_wr, we, q, open); TODO
+    dffer_0: dffer port map(d_wr, clkn, we, b0, q, open);
 
     tx_0: tx port map(re, re_n, q, d_rd);
 
-    inverter_0: inverter port map(re, re_n);
+    inverter_1: inverter port map(re, re_n);
 
     cache_decoder_0: cache_decoder port map(ce, rd_wr, we, re);
 

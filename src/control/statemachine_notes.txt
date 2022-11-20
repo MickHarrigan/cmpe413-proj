@@ -56,13 +56,13 @@ cb_offset =
     mux:
         input0: cpu_add[1:0]
         input1: [2:1]
-        s:      [4]
+        s:      s4and3
 
 tb_ce = 
     state == 12 or 24 or 20
 
 tb_rd_wr = 
-    [4]'
+    state == 12 or 20
     
 valid_ce = 
     state == 12 or 24 or 20

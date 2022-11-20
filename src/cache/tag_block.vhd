@@ -11,7 +11,8 @@ entity tag_block is
         rd_wr   : in std_logic;
         index0  : in std_logic;
         index1  : in std_logic;
-        d_rd    : out std_logic_vector(1 downto 0)
+        d_rd    : out std_logic_vector(1 downto 0);
+        clk     : in std_logic
     );
 end tag_block;
 
@@ -21,7 +22,8 @@ architecture structural of tag_block is
             d_wr    : in std_logic_vector(1 downto 0);
             ce      : in std_logic;
             rd_wr   : in std_logic;
-            d_rd    : out std_logic_vector(1 downto 0)
+            d_rd    : out std_logic_vector(1 downto 0);
+            clk     : in std_logic
         );
     end component;
 
@@ -58,9 +60,9 @@ begin
     and2_1: and2 port map(ce, ce1, ce1g);
     and2_2: and2 port map(ce, ce2, ce2g);
     and2_3: and2 port map(ce, ce3, ce3g);
-    row_0: cache_cell2 port map(d_wr, ce0g, rd_wr, d_rd);
-    row_1: cache_cell2 port map(d_wr, ce1g, rd_wr, d_rd);
-    row_2: cache_cell2 port map(d_wr, ce2g, rd_wr, d_rd);
-    row_3: cache_cell2 port map(d_wr, ce3g, rd_wr, d_rd);
+    row_0: cache_cell2 port map(d_wr, ce0g, rd_wr, d_rd, clk);
+    row_1: cache_cell2 port map(d_wr, ce1g, rd_wr, d_rd, clk);
+    row_2: cache_cell2 port map(d_wr, ce2g, rd_wr, d_rd, clk);
+    row_3: cache_cell2 port map(d_wr, ce3g, rd_wr, d_rd, clk);
 
 end structural;

@@ -13,7 +13,8 @@ entity cache_block is
         index1  : in std_logic;
         offset0 : in std_logic;
         offset1 : in std_logic;
-        d_rd    : out std_logic_vector(7 downto 0)
+        d_rd    : out std_logic_vector(7 downto 0);
+        clk     : in std_logic
     );
 end cache_block;
 
@@ -26,7 +27,8 @@ architecture structural of cache_block is
             rd_wr   : in std_logic;
             a0      : in std_logic;
             a1      : in std_logic;
-            d_rd    : out std_logic_vector(7 downto 0)
+            d_rd    : out std_logic_vector(7 downto 0);
+            clk     : in std_logic
         );
     end component;
 
@@ -63,9 +65,9 @@ begin
     and2_1: and2 port map(ce, ce1, ce1g);
     and2_2: and2 port map(ce, ce2, ce2g);
     and2_3: and2 port map(ce, ce3, ce3g);
-    row_0: cache_4byte port map(d_wr, ce0g, rd_wr, offset0, offset1, d_rd);
-    row_1: cache_4byte port map(d_wr, ce1g, rd_wr, offset0, offset1, d_rd);
-    row_2: cache_4byte port map(d_wr, ce2g, rd_wr, offset0, offset1, d_rd);
-    row_3: cache_4byte port map(d_wr, ce3g, rd_wr, offset0, offset1, d_rd);
+    row_0: cache_4byte port map(d_wr, ce0g, rd_wr, offset0, offset1, d_rd, clk);
+    row_1: cache_4byte port map(d_wr, ce1g, rd_wr, offset0, offset1, d_rd, clk);
+    row_2: cache_4byte port map(d_wr, ce2g, rd_wr, offset0, offset1, d_rd, clk);
+    row_3: cache_4byte port map(d_wr, ce3g, rd_wr, offset0, offset1, d_rd, clk);
 
 end structural;

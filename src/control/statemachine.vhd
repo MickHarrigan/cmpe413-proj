@@ -33,8 +33,8 @@ entity statemachine is
         mem_enable      : out std_logic;
 
         cb_ce           : out std_logic;
-        cb_ce_adj       : out std_logic;
-        cb_ce_inv       : out std_logic;
+        -- cb_ce_adj       : out std_logic; TODO
+        -- cb_ce_inv       : out std_logic;
         
         cb_rd_wr        : out std_logic;
         cb_offset1      : out std_logic;
@@ -248,8 +248,8 @@ architecture structural of statemachine is
         : inverter use entity work.inverter(structural);
     
     for and2_0, and2_1, and2_2, and2_3, and2_4, and2_5, and2_6, and2_7, and2_8, 
-        and2_9, and2_10, and2_11, and2_12, and2_13, and2_14, and2_15, and2_16,
-        and2_17
+        and2_9, and2_10, and2_11, and2_12, and2_13, and2_14, and2_15, and2_16
+        --and2_17
         : and2 use entity work.and2(structural);
 
     for and3_0, and3_1, and3_2, and3_3, and3_4, and3_5, and3_6, and3_7
@@ -258,7 +258,8 @@ architecture structural of statemachine is
     for and4_0, and4_1, and4_2, and4_3
         : and4 use entity work.and4(structural);
     
-    for or2_0, or2_1, or2_2, or2_3, or2_4, or2_5, or2_6
+    for or2_0, or2_1, or2_2, or2_3, or2_4, or2_5, --or2_6
+        or2_7
         : or2 use entity work.or2(structural);
 
     for or4_0, or4_1, or4_2: or4 use entity work.or4(structural);
@@ -270,7 +271,7 @@ architecture structural of statemachine is
     for mux2_0, mux2_1: mux2 use entity work.mux2(structural);
 
     for buff_0, buff_1, buff_2, buff_3, --buff_4 buff_5, 
-        buff_6, buff_7, 
+        buff_6, --buff_7, 
         buff_8, buff_9, buff_10, buff_11, buff_12, buff_13
         : buff use entity work.buff(structural);
 
@@ -373,27 +374,28 @@ begin
     or4_1: or4 port map(s01, is_state21, s4and3, b0, cb_ce);
 
     -- cb_ce_adj
-    --buff_4: buff port map(s4and3, cb_ce_adj); TODO: delete
-    or2_6: or2 port map(s4and3, is_state15, cb_ce_adj);
+        --buff_4: buff port map(s4and3, cb_ce_adj); TODO: delete
+    --or2_6: or2 port map(s4and3, is_state15, cb_ce_adj);
 
     -- cb_ce_inv
-    --buff_5: buff port map(state(0), cb_ce_inv); TODO: delete
-    and2_17: and2 port map(state(0), s4and3, cb_ce_inv);
+        --buff_5: buff port map(state(0), cb_ce_inv); TODO: delete
+    --and2_17: and2 port map(state(0), s4and3, cb_ce_inv);
 
     -- cb_rd_wr
     inverter_0: inverter port map(state(4), s4n);
     and2_2: and2 port map(s4n, state(3), cb_rd_wr);
 
     -- cb_offset
-    mux2_0: mux2 port map(cpu_add1, state(2), state(4), cb_offset1);
-    mux2_1: mux2 port map(cpu_add0, state(1), state(4), cb_offset0);
+    mux2_0: mux2 port map(cpu_add1, state(2), s4and3, cb_offset1);
+    mux2_1: mux2 port map(cpu_add0, state(1), s4and3, cb_offset0);
 
     -- tb_ce
     or4_2: or4 port map(is_state12, is_state24, is_state20, b0, is_state_12_24_20);
     buff_6: buff port map(is_state_12_24_20, tb_ce);
 
     -- tb_rd_wr
-    buff_7: buff port map(s4n, tb_rd_wr);
+    --buff_7: buff port map(s4n, tb_rd_wr);
+    or2_7: or2 port map(is_state12, is_state20, tb_rd_wr);
 
     -- valid_ce
     buff_8: buff port map(is_state_12_24_20, valid_ce);
