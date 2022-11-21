@@ -328,7 +328,7 @@ begin
     buff_7: buff port map(is_state01, valid_ce_all);
 
     -- valid_rd_wr
-    buff_8: buff port map(is_state14, valid_rd_wr);
+    buff_8: buff port map(is_state_04_14, valid_rd_wr);
     
     -- valid_d_wr
     buff_9: buff port map(is_state08, valid_d_wr);

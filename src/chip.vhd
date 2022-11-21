@@ -115,6 +115,19 @@ architecture structural of chip is
         );
     end component;
 
+    component valid_ce_gen
+        port(
+            index0:         in std_logic;
+            index1:         in std_logic;
+            valid_ce:       in std_logic;
+            valid_ce_all:   in std_logic;
+            valid_ce0:     out std_logic;
+            valid_ce1:     out std_logic;
+            valid_ce2:     out std_logic;
+            valid_ce3:     out std_logic
+        );
+    end component;
+
     component Dlatch
         port ( d   : in  std_logic;
          clk : in  std_logic;
@@ -138,13 +151,6 @@ architecture structural of chip is
         q       : out std_logic_vector(7 downto 0);
         qbar    : out std_logic_vector(7 downto 0)
     );
-    end component;
-
-    component buff
-        port(
-            input   : in std_logic;
-            output  : out std_logic
-        );
     end component;
 
     component mux2
@@ -231,7 +237,7 @@ architecture structural of chip is
 
     for latch_cpu_data: dlatch8 use entity work.dlatch8(structural);
 
-    for latch_cpu_rd_wrn: dlatch use entity work.dlatch(structural);
+    for latch_cpu_rd_wrn: Dlatch use entity work.Dlatch(structural);
 
     for sm: statemachine use entity work.statemachine(structural);
 
@@ -239,9 +245,8 @@ architecture structural of chip is
 
     for comp_0, comp_1: comparator5s use entity work.comparator5s(structural);
 
-    for buff_shiftreg_done: buff use entity work.buff(structural);
-
-    for mux2_0, mux2_1, mux2_2, mux2_3, mux2_4, mux2_5, mux2_6, mux2_7
+    for mux2_0, mux2_1, mux2_2, mux2_3, mux2_4, mux2_5, mux2_6, mux2_7, mux2_8,
+        mux2_9
         : mux2 use entity work.mux2(structural);
 
     for cb: cache_block use entity work.cache_block(structural);
@@ -275,8 +280,10 @@ architecture structural of chip is
 
     signal count_to_7, count_to_15: std_logic;
 
-    signal cb_ce: std_logic;
-    signal cb_rd_wr, cb_offset1, cb_offset0: std_logic;
+    signal cb_d_wr_control: std_logic;
+    signal cb_d_wr: std_logic_vector(7 downto 0);
+    signal cb_offset_control, cb_offset0, cb_offset1: std_logic;
+    signal cb_ce, cb_rd_wr: std_logic;
     signal cb_d_rd: std_logic_vector(7 downto 0);
 
     signal tb_ce, tb_rd_wr: std_logic; 
@@ -290,58 +297,40 @@ architecture structural of chip is
     
     signal mem_add_out: std_logic_vector(5 downto 0);
     signal cpu_data_oe, mem_add_oe: std_logic;
-
-    signal cb_d_wr_control: std_logic;
-    signal cb_d_wr: std_logic_vector(7 downto 0);
     
 begin
     tie_low_0: tie_low port map(b0);
     tie_high_0: tie_high port map(b1);
 
-
-    -- NOTE: Make sure to add these back if the dlatches fail.
-    -- connect cpu_add to 6 bit register
-    -- ce is whatever enables the address register, same for rst
-    -- wire_to_cache is a 5 downto 0 vector that goes to tag comparator (hit miss) and cache_block index/offset
-    -- reg_cpu_add: dffer6 port map(cpu_add, clk, start, reset, cpu_add_stored, open);
     latch_cpu_add: dlatch6 port map(cpu_add, start, cpu_add_stored, open);
 
-    -- ce/rst same as cpu_add
-    -- wire_to_sm connects to state machine for read/write
-    -- reg_cpu_rd_wrn: dffer port map(cpu_rd_wrn, clk, start, reset, cpu_rd_wrn_stored, open);
     latch_cpu_rd_wrn: Dlatch port map(cpu_rd_wrn, start, cpu_rd_wrn_stored, open);
 
-    -- ce/rst same as cpu_add
-    -- no clue where this goes directly with somewhere
-    -- reg_cpu_data: dffer8 port map(cpu_data, clk, start, reset, cpu_data_stored, open);
     latch_cpu_data: dlatch8 port map(cpu_data, start, cpu_data_stored, open);
 
     sm: statemachine port map(
-        -- fix this instantiation lol
-        clk, 
-        cpu_rd_wrn_stored, start, reset, 
-        shiftreg_done, 
-        hit_miss, 
-        cpu_add_stored(1), cpu_add_stored(0), 
-        busy, 
-        shiftreg_input, shiftreg_rst, 
-        cpu_data_oe, mem_add_oe, 
-        mem_en, 
-        cb_ce, --cb_ce_adj, cb_ce_inv, TODO
-        cb_rd_wr, cb_offset1, cb_offset0, 
-        tb_ce, tb_rd_wr, 
-        valid_ce, valid_ce_all, valid_rd_wr, valid_d_wr,
-        cb_d_wr_control
+        clk,
+        cpu_rd_wrn_stored, start, reset,
+        count_to_7, count_to_15,
+        hit_miss,
+        busy,
+        counter_ce, counter_rst,
+        cpu_data_oe, mem_add_oe,
+        mem_en,
+        cb_d_wr_control,
+        cb_ce, cb_rd_wr,
+        cb_offset_control,
+        tb_ce, tb_rd_wr,
+        valid_ce, valid_ce_all,
+        valid_rd_wr, valid_d_wr
     );
-
 
     counter: counter5 port map(clk, counter_ce, counter_rst, counter_q);
     -- compare counter5 to 2 values (7 and 15)
     comp_0: comparator5s port map(counter_q, b1, b1, b1, b0, b0, count_to_7);
     comp_1: comparator5s port map(counter_q, b1, b1, b1, b1, b0, count_to_15);
-    -- buff_shiftreg_done: buff port map(shiftreg_q(6), shiftreg_done);
-    
-    -- Select between cpu_data and mem_data
+        
+    -- Select the data given to the cache
     mux2_0: mux2 port map(cpu_data_stored(0), mem_data(0), cb_d_wr_control, cb_d_wr(0));
     mux2_1: mux2 port map(cpu_data_stored(1), mem_data(1), cb_d_wr_control, cb_d_wr(1));
     mux2_2: mux2 port map(cpu_data_stored(2), mem_data(2), cb_d_wr_control, cb_d_wr(2));
@@ -350,10 +339,13 @@ begin
     mux2_5: mux2 port map(cpu_data_stored(5), mem_data(5), cb_d_wr_control, cb_d_wr(5));
     mux2_6: mux2 port map(cpu_data_stored(6), mem_data(6), cb_d_wr_control, cb_d_wr(6));
     mux2_7: mux2 port map(cpu_data_stored(7), mem_data(7), cb_d_wr_control, cb_d_wr(7));
-    
-    --cb_ce_gen_0: cb_ce_gen port map(cb_ce, cb_ce_adj, cb_ce_inv, clk, cb_ce_out);
+        
+    -- Select the offset given to the cache
+    mux2_8: mux2 port map(cpu_add_stored(0), counter_q(1), cb_offset_control, cb_offset0);
+    mux2_9: mux2 port map(cpu_add_stored(1), counter_q(2), cb_offset_control, cb_offset1);
+
     cb: cache_block port map(
-        cb_d_wr, cb_ce, cb_rd_wr, -- cb_ce_out->cb_ce TODO
+        cb_d_wr, cb_ce, cb_rd_wr,
         cpu_add_stored(2), cpu_add_stored(3), cb_offset0, cb_offset1,
         cb_d_rd, clk
     );
