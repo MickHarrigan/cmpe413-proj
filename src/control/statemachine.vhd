@@ -187,7 +187,7 @@ architecture structural of statemachine is
             input13     : in std_logic;
             input14     : in std_logic;
             input15     : in std_logic;
-            output0     : out std_logic_vector(3 downto 0)
+            output      : out std_logic_vector(3 downto 0)
         );
     end component;
 

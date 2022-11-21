@@ -20,7 +20,7 @@ entity encoder16to4 is
         input13     : in std_logic;
         input14     : in std_logic;
         input15     : in std_logic;
-        output0     : out std_logic_vector(3 downto 0)
+        output      : out std_logic_vector(3 downto 0)
     );
 end encoder16to4;
 
@@ -55,21 +55,21 @@ begin
     -- o0 = odds
     or4_0 : or4 port map(input1, input3, input5, input7, a);
     or4_1 : or4 port map(input9, input11, input13, input15, b);
-    or2_0 : or2 port map(a,b, output0(0));
+    or2_0 : or2 port map(a,b, output(0));
 
     -- o1 = 2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31
     or4_2 : or4 port map(input2, input3, input6, input7, c);
     or4_3 : or4 port map(input10, input11, input14, input15, d);
-    or2_1 : or2 port map(c,d, output0(1));
+    or2_1 : or2 port map(c,d, output(1));
 
     -- o2 = 4-7, 12-15, 20-23, 28-31
     or4_4 : or4 port map(input4, input5, input6, input7, e);
     or4_5 : or4 port map(input12, input13, input14, input15, f);
-    or2_2 : or2 port map(e,f, output0(2));
+    or2_2 : or2 port map(e,f, output(2));
 
     -- o3 = 8-15, 24-31
     or4_6 : or4 port map(input8, input9, input10, input11, g);
     or4_7 : or4 port map(input12, input13, input14, input15, h);
-    or2_3 : or2 port map(g,h, output0(3));
+    or2_3 : or2 port map(g,h, output(3));
 
 end structural;
