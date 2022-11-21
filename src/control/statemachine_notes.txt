@@ -1,80 +1,51 @@
---- State code bit meanings ---
-
-00xxx: misc
-
-01xxx: Read (misc)
-    01Axx:
-        cpu_busy = A
-
-10xxx: Write
-    10Axx:
-        cpu_busy = A
-
-11xxx: Read (write data from mem)
-    xxABC:
-        cb_offset = AB
-        cb_ce_inv = C
-
-
 --- Pseudocode output equations ---
 [brackets] are bit positions of state code
-"state" is the decimal value of [4:0]
+"state" is the decimal value of [3:0]
 
 cpu_busy = 
-    (([4] xor [3]) and [2]) or ([4] and [3])
+    [3] or is_state04 or is_state06
 
-shiftreg_input = 
-    state == 13
+counter_ce = 
+    is_state12 or is_state13 or is_state08
 
-shiftreg_rst = 
-    state == 1
+counter_rst = 
+    is_state06 or is_state01
 
 cpu_data_oe = 
-    state == 8 or 9
+    is_state05 or is_state07
 
 mem_add_oe = 
-    state == 13
+    is_state12
 
 mem_enable = 
-    state == 13    
-
-cb_ce = 
-    (state == 12 or 8 or 15 or 9 or 21) or
-    ([4] and [3])
-
-cb_ce_adj = 
-    ([4] and [3]) or
-    state == 15
-
-cb_ce_inv = 
-    [0] and ([4] and [3])
-
-cb_rd_wr = 
-    [4]' and [3]
-
-cb_offset = 
-    mux:
-        input0: cpu_add[1:0]
-        input1: [2:1]
-        s:      s4and3
-
-tb_ce = 
-    state == 12 or 24 or 20
-
-tb_rd_wr = 
-    state == 12 or 20
-    
-valid_ce = 
-    state == 12 or 24 or 20
-
-valid_ce_all = 
-    state == 1
-
-valid_rd_wr = 
-    [4] xor [3]
-
-valid_d_wr = 
-    [4]
+    is_state12
 
 cb_d_wr_control = 
-    [3]
+    is_state08
+
+cb_ce = 
+    [3] xor [2]
+
+cb_rd_wr = 
+    [3]' and [2]
+
+cb_offset_control = 
+    is_state08
+
+tb_ce = 
+    is_state04 or is_state08 or is_state14
+
+tb_rd_wr = 
+    is_state04 or is_state14
+    
+valid_ce = 
+    is_state04 or is_state08 or is_state14
+
+valid_ce_all = 
+    is_state01
+
+valid_rd_wr = 
+    is_state04 or is_state14
+
+valid_d_wr = 
+    is_state08

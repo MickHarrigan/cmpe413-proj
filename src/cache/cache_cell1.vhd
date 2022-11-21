@@ -15,15 +15,6 @@ entity cache_cell1 is
 end cache_cell1;
 
 architecture structural of cache_cell1 is
-    --component Dlatch TODO
-    --    port(
-    --        d       : in std_logic;
-    --        clk     : in std_logic;
-    --        q       : out std_logic;
-    --        qbar    : out std_logic
-    --    );
-    --end component;
-
     component dffer
         port(
             d       : in std_logic;
@@ -66,7 +57,6 @@ architecture structural of cache_cell1 is
         );
     end component;
 
-    --for Dlatch_0: Dlatch use entity work.Dlatch(structural); TODO
     for dffer_0: dffer use entity work.dffer(structural);
     for tx_0: tx use entity work.tx(structural);
     for inverter_0, inverter_1: inverter use entity work.inverter(structural);
@@ -80,7 +70,6 @@ begin
 
     inverter_0: inverter port map(clk, clkn);
 
-    --Dlatch_0: Dlatch port map(d_wr, we, q, open); TODO
     dffer_0: dffer port map(d_wr, clkn, we, b0, q, open);
 
     tx_0: tx port map(re, re_n, q, d_rd);
