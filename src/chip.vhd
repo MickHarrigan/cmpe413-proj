@@ -28,6 +28,12 @@ architecture structural of chip is
         );
     end component;
 
+    component tie_high
+        port(
+            output: out std_logic
+        );
+    end component;
+
     -- state machine
     component statemachine
         port(
@@ -38,65 +44,37 @@ architecture structural of chip is
             cpu_start       : in std_logic;
             cpu_reset       : in std_logic;
 
-            shiftreg_done   : in std_logic;
+            count1          : in std_logic;
+            count2          : in std_logic;
 
             hit_miss        : in std_logic;
-
-            -- Signals that may be passed through, not used in logic
-            cpu_add1        : in std_logic;
-            cpu_add0        : in std_logic;
 
             -- Outputs
             cpu_busy        : out std_logic;
 
-            shiftreg_input  : out std_logic;
-            shiftreg_rst    : out std_logic;
+            counter_ce      : out std_logic;
+            counter_rst     : out std_logic;
 
             cpu_data_oe     : out std_logic;
             mem_add_oe      : out std_logic;
 
             mem_enable      : out std_logic;
 
-            cb_ce           : out std_logic;
-            --cb_ce_adj       : out std_logic; TODO
-            --cb_ce_inv       : out std_logic;
-            
-            cb_rd_wr        : out std_logic;
-            cb_offset1      : out std_logic;
-            cb_offset0      : out std_logic;
+            cb_d_wr_control : out std_logic;
 
+            cb_ce           : out std_logic;
+            cb_rd_wr        : out std_logic;
+
+            cb_offset_control   : out std_logic;
+        
             tb_ce           : out std_logic;
             tb_rd_wr        : out std_logic;
 
             valid_ce        : out std_logic;
             valid_ce_all    : out std_logic;
+
             valid_rd_wr     : out std_logic;
-            valid_d_wr      : out std_logic;
-
-            cb_d_wr_control : out std_logic
-        );
-    end component;
-
-    --component cb_ce_gen TODO
-    --    port(
-    --        cb_ce:      in std_logic;
-    --        cb_ce_adj:  in std_logic;
-    --        cb_ce_inv:  in std_logic;
-    --        clk:        in std_logic;
-    --        cb_ce_out:  out std_logic
-    --    );
-    --end component;
-
-    component valid_ce_gen
-        port(
-            index0:         in std_logic;
-            index1:         in std_logic;
-            valid_ce:       in std_logic;
-            valid_ce_all:   in std_logic;
-            valid_ce0:     out std_logic;
-            valid_ce1:     out std_logic;
-            valid_ce2:     out std_logic;
-            valid_ce3:     out std_logic
+            valid_d_wr      : out std_logic
         );
     end component;
 
@@ -137,17 +115,6 @@ architecture structural of chip is
         );
     end component;
 
-    -- component dffer
-    --     port(
-    --         d       : in std_logic;
-    --         clk     : in std_logic;
-    --         ce      : in std_logic;
-    --         rst     : in std_logic;
-    --         q       : out std_logic;
-    --         qbar    : out std_logic
-    --     );
-    -- end component;
-
     component Dlatch
         port ( d   : in  std_logic;
          clk : in  std_logic;
@@ -172,29 +139,6 @@ architecture structural of chip is
         qbar    : out std_logic_vector(7 downto 0)
     );
     end component;
-
-    -- -- registers (8 and 6)
-    -- component dffer6
-    --     port(
-    --         d       : in std_logic_vector(5 downto 0);
-    --         clk     : in std_logic;
-    --         ce      : in std_logic;
-    --         rst     : in std_logic;
-    --         q       : out std_logic_vector(5 downto 0);
-    --         qbar    : out std_logic_vector(5 downto 0)
-    --     );
-    -- end component;
-
-    -- component dffer8
-    --     port(
-    --         d       : in std_logic_vector(7 downto 0);
-    --         clk     : in std_logic;
-    --         ce      : in std_logic;
-    --         rst     : in std_logic;
-    --         q       : out std_logic_vector(7 downto 0);
-    --         qbar    : out std_logic_vector(7 downto 0)
-    --     );
-    -- end component;
 
     component buff
         port(
@@ -249,12 +193,24 @@ architecture structural of chip is
         );
     end component;
     -- counter
-    component shiftreg8
+    component counter5
         port(
-            clk     : in std_logic;
-            input   : in std_logic;
-            rst     : in std_logic;
-            q       : out std_logic_vector(7 downto 0)
+            clk : in std_logic;
+            ce  : in std_logic;
+            rst : in std_logic;
+            q   : out std_logic_vector(4 downto 0)
+        );
+    end component;
+
+    component comparator5s
+        port(
+            input1      : in std_logic_vector(4 downto 0);
+            input2_0    : in std_logic;
+            input2_1    : in std_logic;
+            input2_2    : in std_logic;
+            input2_3    : in std_logic;
+            input2_4    : in std_logic;
+            output      : out std_logic
         );
     end component;
     -- hit miss detector
@@ -269,25 +225,24 @@ architecture structural of chip is
 
     for tie_low_0: tie_low use entity work.tie_low(structural);
 
-    -- for reg_cpu_add: dffer6 use entity work.dffer6(structural);
+    for tie_high_0: tie_high use entity work.tie_high(structural);
+
     for latch_cpu_add: dlatch6 use entity work.dlatch6(structural);
 
-    -- for reg_cpu_data: dffer8 use entity work.dffer8(structural);
     for latch_cpu_data: dlatch8 use entity work.dlatch8(structural);
 
-    -- for reg_cpu_rd_wrn: dffer use entity work.dffer(structural);
     for latch_cpu_rd_wrn: dlatch use entity work.dlatch(structural);
 
     for sm: statemachine use entity work.statemachine(structural);
 
-    for counter: shiftreg8 use entity work.shiftreg8(structural);
+    for counter: counter5 use entity work.counter5(structural);
+
+    for comp_0, comp_1: comparator5s use entity work.comparator5s(structural);
 
     for buff_shiftreg_done: buff use entity work.buff(structural);
 
     for mux2_0, mux2_1, mux2_2, mux2_3, mux2_4, mux2_5, mux2_6, mux2_7
         : mux2 use entity work.mux2(structural);
-
-    --for cb_ce_gen_0: cb_ce_gen use entity work.cb_ce_gen(structural);
 
     for cb: cache_block use entity work.cache_block(structural);
 
@@ -309,17 +264,18 @@ architecture structural of chip is
     for oe_mem_add: output_enable6 use entity work.output_enable6(structural);
 
     
-    signal b0: std_logic;
+    signal b0, b1: std_logic;
 
     signal cpu_add_stored: std_logic_vector(5 downto 0);
     signal cpu_rd_wrn_stored: std_logic;
     signal cpu_data_stored: std_logic_vector(7 downto 0);
 
-    signal shiftreg_input, shiftreg_rst, shiftreg_done: std_logic;
-    signal shiftreg_q: std_logic_vector(7 downto 0);
+    signal counter_ce, counter_rst: std_logic;
+    signal counter_q: std_logic_vector(4 downto 0);
+
+    signal count_to_7, count_to_15: std_logic;
 
     signal cb_ce: std_logic;
-    --cb_ce_adj, cb_ce_inv, cb_ce_out TODO
     signal cb_rd_wr, cb_offset1, cb_offset0: std_logic;
     signal cb_d_rd: std_logic_vector(7 downto 0);
 
@@ -340,6 +296,7 @@ architecture structural of chip is
     
 begin
     tie_low_0: tie_low port map(b0);
+    tie_high_0: tie_high port map(b1);
 
 
     -- NOTE: Make sure to add these back if the dlatches fail.
@@ -360,6 +317,7 @@ begin
     latch_cpu_data: dlatch8 port map(cpu_data, start, cpu_data_stored, open);
 
     sm: statemachine port map(
+        -- fix this instantiation lol
         clk, 
         cpu_rd_wrn_stored, start, reset, 
         shiftreg_done, 
@@ -377,8 +335,11 @@ begin
     );
 
 
-    counter: shiftreg8 port map(clk, shiftreg_input, shiftreg_rst, shiftreg_q);
-    buff_shiftreg_done: buff port map(shiftreg_q(6), shiftreg_done);
+    counter: counter5 port map(clk, counter_ce, counter_rst, counter_q);
+    -- compare counter5 to 2 values (7 and 15)
+    comp_0: comparator5s port map(counter_q, b1, b1, b1, b0, b0, count_to_7);
+    comp_1: comparator5s port map(counter_q, b1, b1, b1, b1, b0, count_to_15);
+    -- buff_shiftreg_done: buff port map(shiftreg_q(6), shiftreg_done);
     
     -- Select between cpu_data and mem_data
     mux2_0: mux2 port map(cpu_data_stored(0), mem_data(0), cb_d_wr_control, cb_d_wr(0));
