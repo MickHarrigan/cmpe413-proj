@@ -60,7 +60,7 @@ begin
     inv_0: inverter port map(input(3), input3bar);
     
     dec3to8_0: decoder3to8 port map(input3bar, input(0), input(1), input(2), output0, output1, output2, output3, output4, output5, output6, output7);
-    dec3to8_1: decoder3to8 port map(input3, input(0), input(1), input(2), output8, output9, output10, output11, output12, output13, output14, output15);
+    dec3to8_1: decoder3to8 port map(input(3), input(0), input(1), input(2), output8, output9, output10, output11, output12, output13, output14, output15);
 
 end structural;
 

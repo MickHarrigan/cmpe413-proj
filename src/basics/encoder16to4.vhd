@@ -44,11 +44,11 @@ architecture structural of encoder16to4 is
     end component;
 
     for or4_0, or4_1, or4_2, or4_3, or4_4, or4_5, 
-        or4_6, or4_7, or4_8: or4 use entity work.or4(structural); 
+        or4_6, or4_7: or4 use entity work.or4(structural); 
     
     for or2_0, or2_1, or2_2, or2_3: or2 use entity work.or2(structural);
 
-    signal a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,w,x,y,z: std_logic;
+    signal a,b,c,d,e,f,g,h: std_logic;
 
 
 begin

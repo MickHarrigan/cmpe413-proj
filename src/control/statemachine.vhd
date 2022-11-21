@@ -102,6 +102,15 @@ architecture structural of statemachine is
         );
     end component;
 
+    component or3
+        port(
+            input1  : in std_logic;
+            input2  : in std_logic;
+            input3  : in std_logic;
+            output  : out std_logic
+        );
+    end component;
+
     component or4
         port(
             input1: in std_logic;
@@ -112,30 +121,10 @@ architecture structural of statemachine is
         );
     end component;
 
-    component or5
-        port(
-            input1: in std_logic;
-            input2: in std_logic;
-            input3: in std_logic;
-            input4: in std_logic;
-            input5: in std_logic;
-            output: out std_logic
-        );
-    end component;
-
     component xor2
         port(
             input1  : in std_logic;
             input2  : in std_logic;
-            output  : out std_logic
-        );
-    end component;
-
-    component mux2
-        port(
-            input0  : in std_logic;
-            input1  : in std_logic;
-            s       : in std_logic;
             output  : out std_logic
         );
     end component;
@@ -198,7 +187,7 @@ architecture structural of statemachine is
             input13     : in std_logic;
             input14     : in std_logic;
             input15     : in std_logic;
-            output0     : out std_logic_vector(4 downto 0)
+            output0     : out std_logic_vector(3 downto 0)
         );
     end component;
 
@@ -207,41 +196,37 @@ architecture structural of statemachine is
 
     for tie_low_0: tie_low use entity work.tie_low(structural);
 
-    for 
+    for inverter_0, inverter_1, inverter_2, inverter_3, inverter_4, 
+        inverter_5, inverter_6
         : inverter use entity work.inverter(structural);
     
-    for 
+    for and2_0, and2_1, and2_2, and2_3, and2_4, and2_5, and2_6
         : and2 use entity work.and2(structural);
 
-    for 
+    for and3_0, and3_1, and3_2, and3_3, and3_4, and3_5, and3_6, and3_7, 
+        and3_8, and3_9
         : and3 use entity work.and3(structural);
 
-    for 
-        : and4 use entity work.and4(structural);
+    for and4_0, and4_1, and4_2, and4_3: and4 use entity work.and4(structural);
     
-    for 
+    for or2_0, or2_1, or2_2, or2_3, or2_4, or2_5, or2_6, or2_7
         : or2 use entity work.or2(structural);
 
-    for 
-        : or4 use entity work.or4(structural);
+    for or3_0, or3_1, or3_2: or3 use entity work.or3(structural);
+    
+    for or4_0: or4 use entity work.or4(structural);
 
-    for 
-        : or5 use entity work.or5(structural);
+    for xor2_0: xor2 use entity work.xor2(structural);
 
-    for 
-        : xor2 use entity work.xor2(structural);
-
-    for 
-        : mux2 use entity work.mux2(structural);
-
-    for 
+    for buff_0, buff_1, buff_2, buff_3, buff_4, buff_5, buff_6, buff_7, 
+        buff_8, buff_9, buff_10 
         : buff use entity work.buff(structural);
 
-    for dffer4_0: dffer5 use entity work.dffer5(structural);
+    for dffer4_0: dffer4 use entity work.dffer4(structural);
 
-    for decoder4to16_0: decoder5to32 use entity work.decoder4to16(structural);
+    for decoder4to16_0: decoder4to16 use entity work.decoder4to16(structural);
 
-    for encoder16to4_0: encoder32to5 use entity work.encoder16to4(structural);
+    for encoder16to4_0: encoder16to4 use entity work.encoder16to4(structural);
 
     
     -- Analog 1 and 0
@@ -255,8 +240,8 @@ architecture structural of statemachine is
 
     signal cpu_rd_wrn_n, cpu_start_n, cpu_reset_n, count1_n, count2_n, hit_miss_n: std_logic;
 
-    -- npcs TODO
-    signal 
+    signal s00, s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, 
+        s13, s14
         : std_logic;
 
     signal is_state00, is_state01, is_state04, is_state05, is_state06, 
@@ -281,9 +266,9 @@ begin
     );
 
     encoder16to4_0: encoder16to4 port map(
-        next00, next01, open, open,
+        next00, next01, b0, b0,
         next04, next05, next06, next07, 
-        next08, next09, open, open
+        next08, next09, b0, b0,
         next12, next13, next14, next15, 
         nextstate
     );
@@ -322,7 +307,7 @@ begin
     buff_2: buff port map(is_state08, cb_d_wr_control);
 
     -- cb_ce
-    xor2_0(state(3), state(2), cb_ce);
+    xor2_0: xor2 port map(state(3), state(2), cb_ce);
 
     -- cb_rd_wr
     and2_0: and2 port map(s3n, state(2), cb_rd_wr);
@@ -359,54 +344,54 @@ begin
     inverter_6: inverter port map(hit_miss, hit_miss_n);
 
     -- -> idle
-    and3_x: and3 port map(is_state00, cpu_start_n, cpu_reset_n, s00);   -- idle -> idle
-    and2_x: and2 port map(is_state07, cpu_reset_n, s01);                -- rd_miss_send -> idle
-    and2_x: and2 port map(is_state05, cpu_reset_n, s02);                -- rd_hit -> idle
-    and2_x: and2 port map(is_state15, cpu_reset_n, s03);                -- wr_miss -> idle
-    and2_x: and2 port map(is_state09, cpu_reset_n, s04);                -- wr_hit -> idle
-    and3_x: and3 port map(is_state01, cpu_start_n, cpu_reset_n, s05);   -- reset -> idle
-    or4_x: or4 port map(s00, s01, s02, s03, s06);
-    or3_x: or3 port map(s06, s04, s05, next00);
+    and3_0: and3 port map(is_state00, cpu_start_n, cpu_reset_n, s00);   -- idle -> idle
+    and2_1: and2 port map(is_state07, cpu_reset_n, s01);                -- rd_miss_send -> idle
+    and2_2: and2 port map(is_state05, cpu_reset_n, s02);                -- rd_hit -> idle
+    and2_3: and2 port map(is_state15, cpu_reset_n, s03);                -- wr_miss -> idle
+    and2_4: and2 port map(is_state09, cpu_reset_n, s04);                -- wr_hit -> idle
+    and3_1: and3 port map(is_state01, cpu_start_n, cpu_reset_n, s05);   -- reset -> idle
+    or4_0: or4 port map(s00, s01, s02, s03, s06);
+    or3_2: or3 port map(s06, s04, s05, next00);
 
     -- -> rd_init
-    and4_x: and4 port map(is_state00, cpu_rd_wrn, cpu_start, cpu_reset_n, s07); -- idle -> rd_init
-    and4_x: and4 port map(is_state01, cpu_rd_wrn, cpu_start, cpu_reset_n, s08); -- reset -> rd_init
-    or2_x: or2 port map(s07, s08, next04);
+    and4_0: and4 port map(is_state00, cpu_rd_wrn, cpu_start, cpu_reset_n, s07); -- idle -> rd_init
+    and4_1: and4 port map(is_state01, cpu_rd_wrn, cpu_start, cpu_reset_n, s08); -- reset -> rd_init
+    or2_4: or2 port map(s07, s08, next04);
 
     -- rd_init -> rd_miss_mem_enable
-    and3_x: and3 port map(is_state04, cpu_reset_n, hit_miss_n, next12);
+    and3_2: and3 port map(is_state04, cpu_reset_n, hit_miss_n, next12);
 
     -- -> rd_miss_mem_wait
-    and2_x: and2 port map(is_state12, cpu_reset_n, s09);            -- rd_miss_mem_enable -> rd_miss_mem_wait
-    and3_x: and3 port map(is_state13, cpu_reset_n, count1_n, s10);  -- rd_miss_mem_wait -> rd_miss_mem_wait
-    or2_x: or2 port map(s09, s10, next13);
+    and2_5: and2 port map(is_state12, cpu_reset_n, s09);            -- rd_miss_mem_enable -> rd_miss_mem_wait
+    and3_3: and3 port map(is_state13, cpu_reset_n, count1_n, s10);  -- rd_miss_mem_wait -> rd_miss_mem_wait
+    or2_5: or2 port map(s09, s10, next13);
 
     -- -> rd_miss_wr
-    and3_x: and3 port map(is_state13, cpu_reset_n, count1, s11);    -- rd_miss_mem_wait -> rd_miss_wr
-    and3_x: and3 port map(is_state08, cpu_reset_n, count2_n, s12);  -- rd_miss_wr -> rd_miss_wr
-    or2_x: or2 port map(s11, s12, next08);
+    and3_4: and3 port map(is_state13, cpu_reset_n, count1, s11);    -- rd_miss_mem_wait -> rd_miss_wr
+    and3_5: and3 port map(is_state08, cpu_reset_n, count2_n, s12);  -- rd_miss_wr -> rd_miss_wr
+    or2_6: or2 port map(s11, s12, next08);
 
     -- rd_miss_wr -> rd_miss_rd
-    and3_x: and3 port map(is_state08, cpu_reset_n, count2, next06);
+    and3_6: and3 port map(is_state08, cpu_reset_n, count2, next06);
 
     -- rd_miss_rd -> rd_miss_send
-    and2_16: and2 port map(is_state15, cpu_reset_n, next09);
+    and2_6: and2 port map(is_state06, cpu_reset_n, next07);
     
     -- rd_init -> rd_hit
-    and3_5: and3 port map(is_state12, cpu_reset_n, hit_miss, next08);
+    and3_7: and3 port map(is_state04, cpu_reset_n, hit_miss, next05);
 
     -- -> wr_init
     and4_2: and4 port map(is_state00, cpu_rd_wrn_n, cpu_start, cpu_reset_n, s13);   -- idle -> wr_init
     and4_3: and4 port map(is_state01, cpu_rd_wrn_n, cpu_start, cpu_reset_n, s14);   -- reset -> wr_init
-    or2_5: or2 port map(s13, s14, next20);
+    or2_7: or2 port map(s13, s14, next14);
 
     -- wr_init -> wr_miss
-    and3_6: and3 port map(is_state20, cpu_reset_n, hit_miss_n, next22);
+    and3_8: and3 port map(is_state14, cpu_reset_n, hit_miss_n, next15);
 
     -- wr_init -> wr_hit
-    and3_7: and3 port map(is_state20, cpu_reset_n, hit_miss, next21);
+    and3_9: and3 port map(is_state14, cpu_reset_n, hit_miss, next09);
 
     -- any state -> reset
-    buff_12: buff port map(cpu_reset, next01);
+    buff_10: buff port map(cpu_reset, next01);
 
 end structural;
