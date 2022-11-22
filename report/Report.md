@@ -61,7 +61,10 @@ We used github to store files and track changes. Our repo can be found [here](ht
 
 ## Design Strategy
 ### State Machine
-The state machine acts as a controller for all other modules in the top-level chip. The current state is stored in a register, and the output signals are calcualted using combinational logic. In addition, the next state is determined based on the current state and the inputs. Table 1 shows the list of states and a 
+The state machine acts as a controller for all other modules in the top-level chip. The current state is stored in a register, and the output signals are calcualted using combinational logic. In addition, the next state is determined based on the current state and the 
+inputs. The behavior of the state machine is described by the following tables.
+
+Table 1 shows the list of states and a 
 description of each.
 
 | Table 1: List of States |
