@@ -57,12 +57,12 @@ Chip
     └── Valid Bit Decoder
 ```
 
+We used github to store files and track changes. Our repo can be found [here](https://github.com/MickHarrigan/cmpe413-proj)
+
 ## Design Strategy
 ### State Machine
 The state machine acts as a controller for all other modules in the top-level chip. The current state is stored in a register, and the output signals are calcualted using combinational logic. In addition, the next state is determined based on the current state and the inputs. Table 1 shows the list of states and a 
 description of each.
-
-<br />
 
 #### Table 1: List of States
 
@@ -85,8 +85,6 @@ description of each.
 
 Table 2 shows the outputs for each state.
 
-<br />
-
 #### Table 2: State Output
 
 | Current State         | cpu\_busy | counter\_ce | counter\_rst | cpu\_data\_oe | mem\_add\_oe | mem\_enable | cb\_d\_wr\_control | cb\_ce | cb\_rd\_wr | cb\_offset\_control | tb\_ce | tb\_rd\_wr | valid\_ce | valid\_ce\_all | valid\_rd\_wr | valid\_d\_wr |
@@ -107,8 +105,6 @@ Table 2 shows the outputs for each state.
 <br />
 
 Table 3 shows the possible state transitions, based on the current state and inputs.
-
-<br />
 
 #### Table 3
 
@@ -209,16 +205,14 @@ Figure 3 shows the waveforms for the cache block. This shows what happens when t
 
 | ![simvision-cache](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-cache.png) |
 |:--:|
-|Figure 2: Testbench Waveforms for Cache Block|
+|Figure 3: Testbench Waveforms for Cache Block|
 
 ## Work Breakdown
-Breakdown of commits to the repo are listed on the project [github](https://github.com/MickHarrigan/cmpe413-proj/commits/main). This is a chronicle of all changes and updates that each person did over the course of the development of this project.
+Breakdown of commits to the repo are listed [here](https://github.com/MickHarrigan/cmpe413-proj/commits/main). This is a chronicle of all changes and updates that each person did over the course of the development of this project. Looking deeper into the commit history shows a list of all changes that were pushed to the repo and from which user. Clicking on any of the commits will show which files were changed, added, removed, or moved.
 
-Looking deeper into the commit history shows a list of all changes that were pushed to the repo and from which user. Clicking on any of the commits will show which files were changed, added, removed, or moved. From this a breakdown can be found of how many lines and files were changed and across the whole of the commits the amount is fairly equal.
+In terms of lines written by each person, more were written in Dan's commits due to his dealing with longer files, whereas Mick spent more time on creating more smaller low-level files that were used throughout the porject. The overall amount of code used in the final version of this VHDL library is fairly even with a similarly even split of the workload. Lastly, writing of the documentation for the project was done simultaneously by both team members through the use of live coding. 
 
-In terms of lines written by each person, more were written in Dan's commits due simply to his dealing with larger and longer files, whereas Mick spent more time on creating more smaller files that were implemented in many locations. Because of these choices the overall amount of code used in the final version of this VHDL library is fairly even with a similarly even split of the workload.
-
-Lastly, writing of the documentation for the project was done simultaneously for both Dan and Mick through the use of live coding. In addition to this, moving forward the plan for the layouts is to split up time on the primitives and work with the modules that each person had most time with in the VHDL. This will result in more even time spent on the layouts as well as the VHDL for each person.
+Moving forward, the plan for the layouts is to split up time on the primitives and then each work with the modules that we are most familiar with. This should result in an even time spent on the layouts as well as the VHDL.
 
 ## Conclusion
 This project has taught many different skills and tools to be used later in both of our careers. From learning more simple things such as Git and software control structures, to more specific to this class with VHDL and hierarchical design.
