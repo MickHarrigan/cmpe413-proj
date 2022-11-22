@@ -59,9 +59,107 @@ Chip
 
 ## Design Strategy
 ### State Machine
-- tables
-- inputs and outputs
-- etc
+The state machine acts as a controller for all other modules in the top-level chip. The current state is stored in a register, and the output signals are calcualted using combinational logic. In addition, the next state is determined based on the current state and the inputs. Table 1 shows the list of states and a 
+description of each.
+
+<br />
+
+#### Table 1: List of States
+
+| State name            | State Code (Dec) | State Code (Bin) | Action                                 |
+| --------------------- | ---------------- | ---------------- | -------------------------------------- |
+| idle                  | 0                | 0000             |                                        |
+| rd\_init              | 4                | 0100             | Store inputs, read data, check for hit |
+| rd\_hit               | 5                | 0101             | Send data to CPU                       |
+| rd\_miss\_mem\_enable | 12               | 1100             | Send address to Mem                    |
+| rd\_miss\_mem\_wait   | 13               | 1101             | Wait for Mem                           |
+| rd\_miss\_wr          | 8                | 1000             | Write data to row                      |
+| rd\_miss\_rd          | 6                | 0110             | Read data                              |
+| rd\_miss\_send        | 7                | 0111             | Send data to CPU                       |
+| wr\_init              | 14               | 1110             | Store inputs, check for hit            |
+| wr\_hit               | 9                | 1001             | Write data                             |
+| wr\_miss              | 15               | 1111             | Do nothing                             |
+| reset                 | 1                | 0001             | Reset                                  |
+
+<br />
+
+Table 2 shows the outputs for each state.
+
+<br />
+
+#### Table 2: State Output
+
+| Current State         | cpu\_busy | counter\_ce | counter\_rst | cpu\_data\_oe | mem\_add\_oe | mem\_enable | cb\_d\_wr\_control | cb\_ce | cb\_rd\_wr | cb\_offset\_control | tb\_ce | tb\_rd\_wr | valid\_ce | valid\_ce\_all | valid\_rd\_wr | valid\_d\_wr |
+| --------------------- | --------- | ----------- | ------------ | ------------- | ------------ | ----------- | ------------------ | ------ | ---------- | ------------------- | ------ | ---------- | --------- | -------------- | ------------- | ------------ |
+| idle                  | 0         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
+| rd\_init              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 1      | 1          | 0                   | 1      | 1          | 1         | 0              | 1             | x            |
+| rd\_hit               | 0         | 0           | 0            | 1             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
+| rd\_miss\_mem\_enable | 1         | 1           | 0            | 0             | 1            | 1           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
+| rd\_miss\_mem\_wait   | 1         | 1           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
+| rd\_miss\_wr          | 1         | 1           | 0            | 0             | 0            | 0           | 1                  | 1      | 0          | 1                   | 1      | 0          | 1         | 0              | 0             | 1            |
+| rd\_miss\_rd          | 1         | 0           | 1            | 0             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
+| rd\_miss\_send        | 0         | 0           | 0            | 1             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
+| wr\_init              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 1      | 1          | 1         | 0              | 1             | x            |
+| wr\_hit               | 1         | 0           | 0            | 0             | 0            | 0           | 0                  | 1      | 0          | 0                   | 0      | x          | 0         | 0              | x             | x            |
+| wr\_miss              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
+| reset                 | 0         | 0           | 1            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | x         | 1              | 0             | 0            |
+
+<br />
+
+Table 3 shows the possible state transitions, based on the current state and inputs.
+
+<br />
+
+#### Table 3
+
+| Curr state            | Inputs       |            |            |        |        |           | Next state            |
+| --------------------- | ------------ | ---------- | ---------- | ------ | ------ | --------- | --------------------- |
+|                       | cpu\_rd\_wrn | cpu\_start | cpu\_reset | count1 | count2 | hit\_miss |                       |
+| idle                  | 1            | 1          | 0          |        |        |           | rd\_init              |
+| idle                  | 0            | 1          | 0          |        |        |           | wr\_init              |
+| idle                  | x            | x          | 1          |        |        |           | reset                 |
+| idle                  | x            | 0          | 0          |        |        |           | idle                  |
+|                       |              |            |            |        |        |           |                       |
+| rd\_init              |              |            | 0          |        |        | 0         | rd\_miss\_mem\_enable |
+| rd\_init              |              |            | 0          |        |        | 1         | rd\_hit               |
+| rd\_init              |              |            | 1          |        |        | x         | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_miss\_mem\_enable |              |            | 0          |        |        |           | rd\_miss\_mem\_wait   |
+| rd\_miss\_mem\_enable |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_miss\_mem\_wait   |              |            | 0          | 0      |        |           | rd\_miss\_mem\_wait   |
+| rd\_miss\_mem\_wait   |              |            | 0          | 1      |        |           | rd\_miss\_wr          |
+| rd\_miss\_mem\_wait   |              |            | 1          | x      |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_miss\_wr          |              |            | 0          |        | 0      |           | rd\_miss\_wr          |
+| rd\_miss\_wr          |              |            | 0          |        | 1      |           | rd\_miss\_rd          |
+| rd\_miss\_wr          |              |            | 1          |        | x      |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_miss\_rd          |              |            | 0          |        |        |           | rd\_miss\_send        |
+| rd\_miss\_rd          |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_miss\_send        |              |            | 0          |        |        |           | idle                  |
+| rd\_miss\_send        |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| rd\_hit               |              |            | 0          |        |        |           | idle                  |
+| rd\_hit               |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| wr\_init              |              |            | 0          |        |        | 0         | wr\_miss              |
+| wr\_init              |              |            | 0          |        |        | 1         | wr\_hit               |
+| wr\_init              |              |            | 1          |        |        | x         | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| wr\_miss              |              |            | 0          |        |        |           | idle                  |
+| wr\_miss              |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| wr\_hit               |              |            | 0          |        |        |           | idle                  |
+| wr\_hit               |              |            | 1          |        |        |           | reset                 |
+|                       |              |            |            |        |        |           |                       |
+| reset                 | 1            | 1          | 0          |        |        |           | rd\_init              |
+| reset                 | 0            | 1          | 0          |        |        |           | wr\_init              |
+| reset                 | x            | x          | 1          |        |        |           | reset                 |
+| reset                 | x            | 0          | 0          |        |        |           | idle                  |
+
+<br />
 
 ### 1 Bit Cache Cell
 The single bit cell is built using a modified DFF, transmission gate, and a specialized decoder. Each of these parts are required for the operation of the cell as it is defined.
@@ -87,24 +185,31 @@ The source code for the project is kept entirely on [github](https://github.com/
 
 ## Simulations
 <!-- the below link could be dead -->
-The test for each system is a specific subsection of the top level testbench provided by the TA and Professor. This means that each part is still getting tested, but all using the same file with the scope changed to match that of the specific UUT.
+The following sections include waveforms for the major components of the cache. For each one, we used the top level testbench provided by the TA and Professor. This test shows full functionality of the design and includes each of the four major scenarios (read miss, read hit, write miss, write hit). To test the state machine and cache block, we replaced the chip's signals with signals specific to that module.
 
-The testbench that was provided is within the `testbenches` directory.
+The testbench vhd file and input and output text files are located [here](https://github.com/MickHarrigan/cmpe413-proj/tree/main/testbenches/example_test1).
 
-### Chip (Sample Testbench)
-- description
-- screenshot
+### Chip
+Figure 1 shows the waveforms for the top-level chip. These results match the pdf that was provided near the beginning of the project.
+
+| ![simvision-chip](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-chip.png) |
+|:--:|
+|Figure 1: Testbench Waveforms for Chip|
 
 ### State Machine
-![SM]()
+Figure 2 shows the waveforms for the state machine. All the inputs and outputs are shown, along with the current state.
 
-### 1 bit cache cell
+| ![simvision-statemachine](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-statemachine.png) |
+|:--:|
+|Figure 2: Testbench Waveforms for State Machine|
 
-<!-- Image link -->
-![1bitCell]()
 
-### cb
-![CacheBlock]()
+### Cache Block
+Figure 3 shows the waveforms for the cache block. This shows what happens when the cache is written to or read from.
+
+| ![simvision-cache](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-cache.png) |
+|:--:|
+|Figure 2: Testbench Waveforms for Cache Block|
 
 ## Work Breakdown
 Breakdown of commits to the repo are listed on the project [github](https://github.com/MickHarrigan/cmpe413-proj/commits/main). This is a chronicle of all changes and updates that each person did over the course of the development of this project.
