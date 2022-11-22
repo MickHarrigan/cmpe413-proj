@@ -57,7 +57,7 @@ Chip
     └── Valid Bit Decoder
 ```
 
-We used github to store files and track changes. Our repo can be found [here](https://github.com/MickHarrigan/cmpe413-proj)
+We used github to store files and track changes. Our repo can be found [here](https://github.com/MickHarrigan/cmpe413-proj).
 
 ## Design Strategy
 ### State Machine
@@ -177,7 +177,7 @@ Once the specified row is chosen that module gets the specific offset to either 
 
 
 ## VHDL Code
-The source code for the project is kept entirely on [github](https://github.com/MickHarrigan/cmpe413-proj) for ease of development.
+The source code for the project is located [here](https://github.com/MickHarrigan/cmpe413-proj/tree/main/src), in the src directory.
 
 ## Simulations
 <!-- the below link could be dead -->
