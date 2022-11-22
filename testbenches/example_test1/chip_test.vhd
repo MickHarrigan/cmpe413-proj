@@ -13,7 +13,7 @@ use STD.textio.all;
 entity chip_test is
   
 end chip_test;
-  
+
 architecture test of chip_test is
 
   component chip  
@@ -102,7 +102,8 @@ begin
   
   io_process: process
 
-    file infile  : text open read_mode is "/afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj/testbenches/example_test1/chip_in.txt";
+    -- Vivado: change "text is in" to "text open read_mode is"
+    file infile  : text is in "/afs/umbc.edu/users/d/d/d163/home/cmpe413/proj/cmpe413-proj/testbenches/example_test1/chip_in.txt";
     variable out_line: line;
     variable buf: line;
     variable value: std_logic_vector(7 downto 0);
@@ -147,8 +148,10 @@ begin
       print_output;
 
     end loop;
-    --wait;
-    std.env.stop;
+    wait;
+
+    -- Vivado: uncomment this
+    -- std.env.stop;
       
   end process io_process;
 

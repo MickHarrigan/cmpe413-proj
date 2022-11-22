@@ -1,3 +1,13 @@
+ncsim: 15.20-s035: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	ncsim	15.20-s035: Started on Nov 22, 2022 at 16:03:13 EST
+ncsim
+    -input testbenches/example_test1/run.ncsim
+    -messages
+    -cdslib /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/cds.lib
+    -hdlvar /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/hdl.var
+    chip_test
+
+Loading snapshot vhdl.chip_test:test .................... Done
 ncsim> run 360 ns
  Clock: 0 Start: U Cpu Read/Write: U Reset: U
  CPU address: UUUUUU CPU data: UUUUUUUU
@@ -17,477 +27,478 @@ ncsim> run 360 ns
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 1 Start: 0 Cpu Read/Write: Z Reset: 1
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 2 Start: 0 Cpu Read/Write: Z Reset: 1
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 2 Start: 1 Cpu Read/Write: 1 Reset: 0
  CPU address: 000000 CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 3 Start: 1 Cpu Read/Write: 1 Reset: 0
  CPU address: 000000 CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 3 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 4 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
- Memory  Address: ZZZZZZ
+ Busy: 1 Memory  Enable: 1
+ Memory  Address: 000000
  ----------------------------------------------
  Clock: 4 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 1
+ Memory  Address: 000000
+ ----------------------------------------------
+ Clock: 5 Start: 0 Cpu Read/Write: Z Reset: 0
+ CPU address: ZZZZZZ CPU data: ZZZZZZZZ
+ Memory data: ZZZZZZZZ
+
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 5 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
- Memory  Address: ZZZZZZ
- ----------------------------------------------
- Clock: 5 Start: 0 Cpu Read/Write: Z Reset: 0
- CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: ZZZZZZZZ
-
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 6 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 6 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 7 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 7 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 8 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 8 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 9 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 9 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 10 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 10 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 11 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 11 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 12 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000000
+ Memory data: 00100000
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 12 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000000
+ Memory data: 00100000
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 13 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000000
+ Memory data: 00100000
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 13 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000000
+ Memory data: 00100000
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 14 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000001
+ Memory data: 11000001
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 14 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000001
+ Memory data: 11000001
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 15 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000001
+ Memory data: 11000001
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 15 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000001
+ Memory data: 11000001
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 16 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000010
+ Memory data: 10000010
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 16 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000010
+ Memory data: 10000010
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 17 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000010
+ Memory data: 10000010
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 17 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
- Memory data: 00000010
+ Memory data: 10000010
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 18 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: 00000011
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 18 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: 00000011
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 19 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: 00000011
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 19 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: 00000011
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 20 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 20 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 21 Start: 0 Cpu Read/Write: Z Reset: 0
- CPU address: ZZZZZZ CPU data: ZZZZZZZZ
+ CPU address: ZZZZZZ CPU data: 00100000
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 21 Start: 0 Cpu Read/Write: Z Reset: 0
- CPU address: ZZZZZZ CPU data: ZZZZZZZZ
+ CPU address: ZZZZZZ CPU data: 00100000
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 22 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 22 Start: 1 Cpu Read/Write: 0 Reset: 0
  CPU address: 000011 CPU data: 11111111
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 23 Start: 1 Cpu Read/Write: 0 Reset: 0
  CPU address: 000011 CPU data: 11111111
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 23 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 24 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 24 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 25 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 25 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 26 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 26 Start: 1 Cpu Read/Write: 1 Reset: 0
  CPU address: 000011 CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 27 Start: 1 Cpu Read/Write: 1 Reset: 0
  CPU address: 000011 CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 27 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 28 Start: 0 Cpu Read/Write: Z Reset: 0
- CPU address: ZZZZZZ CPU data: ZZZZZZZZ
+ CPU address: ZZZZZZ CPU data: 11111111
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 28 Start: 0 Cpu Read/Write: Z Reset: 0
- CPU address: ZZZZZZ CPU data: ZZZZZZZZ
+ CPU address: ZZZZZZ CPU data: 11111111
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 29 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 29 Start: 1 Cpu Read/Write: 0 Reset: 0
  CPU address: 111111 CPU data: 10101010
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 30 Start: 1 Cpu Read/Write: 0 Reset: 0
  CPU address: 111111 CPU data: 10101010
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 30 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 31 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 31 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 1 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 32 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 32 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 33 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 33 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 34 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
  Clock: 34 Start: 0 Cpu Read/Write: Z Reset: 0
  CPU address: ZZZZZZ CPU data: ZZZZZZZZ
  Memory data: ZZZZZZZZ
 
- Busy: U Memory  Enable: U
+ Busy: 0 Memory  Enable: 0
  Memory  Address: ZZZZZZ
  ----------------------------------------------
 Ran until 360 NS + 0
 ncsim> exit
+TOOL:	ncsim	15.20-s035: Exiting on Nov 22, 2022 at 16:03:14 EST  (total: 00:00:01)

@@ -40,7 +40,7 @@ chip: $(FILES_CHIP)
 
 # Testbenches
 
-chip_test: $(TESTBENCHES)/example_test1/chip_test.vhd chip
+chip_test: $(TESTBENCHES)/example_test1/chip_test.vhd $(FILES_CHIP)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(TESTBENCHES)/example_test1/chip_test.vhd
 
@@ -50,16 +50,19 @@ chip_test: $(TESTBENCHES)/example_test1/chip_test.vhd chip
 	$(CADENCE)/run_ncsim.bash -input $(TESTBENCHES)/example_test1/run.ncsim -messages -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var chip_test
 
+chip_test_gui:
+	$(CADENCE)/run_ncsim.bash -gui -messages -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var chip_test
 
-#dffer_tb: TESTBENCHES/dffer_tb.vhd $(FILES_BASICS)
-#	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var -smartorder dffer_tb.vhd
-#
-#	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var dffer_tb
-#
-#	$(CADENCE)/run_ncsim.bash -input ncsim.run -messages -cdslib $(CADENCE)/cds.lib \
-#		-hdlvar $(CADENCE)/hdl.var dffer_tb
+statemachine_tb: $(TESTBENCHES)/example_test1/statemachine_tb.vhd $(FILES_CONTROL)
+	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var -smartorder $(TESTBENCHES)/statemachine_tb/statemachine_tb.vhd
+
+	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var statemachine_tb
+
+	$(CADENCE)/run_ncsim.bash -input $(TESTBENCHES)/statemachine_tb/run.ncsim -messages -cdslib $(CADENCE)/cds.lib \
+		-hdlvar $(CADENCE)/hdl.var statemachine_tb
 
 
 # Quality of life
