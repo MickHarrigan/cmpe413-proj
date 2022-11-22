@@ -64,7 +64,8 @@ We used github to store files and track changes. Our repo can be found [here](ht
 The state machine acts as a controller for all other modules in the top-level chip. The current state is stored in a register, and the output signals are calcualted using combinational logic. In addition, the next state is determined based on the current state and the inputs. Table 1 shows the list of states and a 
 description of each.
 
-#### Table 1: List of States
+| Table 1: List of States |
+|:--:|
 
 | State name            | State Code (Dec) | State Code (Bin) | Action                                 |
 | --------------------- | ---------------- | ---------------- | -------------------------------------- |
@@ -85,7 +86,8 @@ description of each.
 
 Table 2 shows the outputs for each state.
 
-#### Table 2: State Output
+| Table 2: State Output Table |
+|:--:|
 
 | Current State         | cpu\_busy | counter\_ce | counter\_rst | cpu\_data\_oe | mem\_add\_oe | mem\_enable | cb\_d\_wr\_control | cb\_ce | cb\_rd\_wr | cb\_offset\_control | tb\_ce | tb\_rd\_wr | valid\_ce | valid\_ce\_all | valid\_rd\_wr | valid\_d\_wr |
 | --------------------- | --------- | ----------- | ------------ | ------------- | ------------ | ----------- | ------------------ | ------ | ---------- | ------------------- | ------ | ---------- | --------- | -------------- | ------------- | ------------ |
@@ -106,7 +108,8 @@ Table 2 shows the outputs for each state.
 
 Table 3 shows the possible state transitions, based on the current state and inputs.
 
-#### Table 3
+| Table 3: State Transition Table |
+|:--:|
 
 | Curr state            | Inputs       |            |            |        |        |           | Next state            |
 | --------------------- | ------------ | ---------- | ---------- | ------ | ------ | --------- | --------------------- |
