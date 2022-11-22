@@ -9,7 +9,7 @@ The documentation on [descriptions](report/project_document.pdf) and [requiremen
 In addition to those files are some general output images and system design drawings used in the process of creating this cache design. This includes the testbench outputs in forms of both a `.txt` file and an output image.
 
 ## Usage and Verification
-Usage of this project is done on the ITE375 computers, or a similar system with Cadence installed. To use the code, clone from the above URL.
+Usage of this project is done on the ITE375 computers, or a similar system with Cadence installed. To use the code, clone from the above URL, or download the release from the [releases](https://github.com/MickHarrigan/cmpe413-proj/releases) page.
 
 Editing of the `Makefile` will be necessary for compilation. The edits needed are to the `CADENCE` directory path on the first line.
 
