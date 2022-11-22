@@ -1,10 +1,11 @@
 # CMPE 413 Final Project
-This is the final project for CMPE 413 done by Daniel Cleaver and Mick Harrigan
+This is the final project for CMPE 413 done by Daniel Cleaver and Mick Harrigan.
 
 ## Description
 [Here](report/project_document.pdf) is the link to the designating file that describes what the project is in full. This repo contains the beginning VHDL code that is used to then later create the specified schematis as well as layouts for this system.
 The other document used to create this system is [here](report/project_waveforms.pdf) and describes the expected waveforms to be created from the final system.
 
+![Image](report/tb.png)
 
 ## Usage
 Firstly, clone the repo into a suitable location for testing. From here make sure to update the line `CADENCE` in the Makefile.
