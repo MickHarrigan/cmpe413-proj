@@ -11,6 +11,10 @@ In addition to those files are some general output images and system design draw
 ## Usage and Verification
 Usage of this project is done on the ITE375 computers, or a similar system with Cadence installed. To use the code, clone from the above URL.
 
+Editing of the `Makefile` will be necessary for compilation. The edits needed are to the `CADENCE` directory path on the first line.
+
+This directory should have all 3 `.bash` scripts provided by the Professor and TA, as well as having a `cds.lib` and `hdl.var` file within the same directory.
+
 To compile a section of the system for testing find the matching section within `Makefile`, or run
 ```
 % make chip
