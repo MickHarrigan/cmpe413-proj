@@ -112,13 +112,12 @@ Once the specified row is chosen that module gets the specific offset to either 
 ## VHDL Code
 The source code for the project is located [here](https://github.com/MickHarrigan/cmpe413-proj/tree/main/src), in the src directory.
 
-The full contents of every file are also given in Appendix 1.
 
 ## Simulations
 <!-- the below link could be dead -->
 The following sections include waveforms for the major components of the cache. For each one, we used the top level testbench provided by the TA and Professor. This test shows full functionality of the design and includes each of the four major scenarios (read miss, read hit, write miss, write hit). To test the state machine and cache block, we replaced the chip's signals with signals specific to that module.
 
-The testbench vhd file and input and output text files are located [here](https://github.com/MickHarrigan/cmpe413-proj/tree/main/testbenches/example_test1). The contents of these files are also shown in Appendix 2.
+The testbench vhd file and input and output text files are located [here](https://github.com/MickHarrigan/cmpe413-proj/tree/main/testbenches/example_test1).
 
 ### Chip
 Figure 1 shows the waveforms for the top-level chip. These results match the pdf that was provided near the beginning of the project.
@@ -154,8 +153,3 @@ This project has taught many different skills and tools to be used later in both
 We expect this to continue with the second half of the project with creating the layouts of the files and systems we designed to eventually have a fully functional cache system.
 
 With all of this in mind this project has been a success in both learning and applying the topics learned in class as well as applicable to our careers as we prepare for our time after graduation.
-
-## Appendix 1: VHDL Source Code
-
-
-## Appendix 2
