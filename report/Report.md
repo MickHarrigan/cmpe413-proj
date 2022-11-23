@@ -11,6 +11,7 @@ Date: 2022-11-22
 This system from the top level chip all the way down uses many different connected parts to achieve the desired results.
 
 The modules contained within this system are listed here as follows:
+
 - State Machine
 - Cache Block
 - Tag Block
@@ -69,21 +70,7 @@ description of each.
 
 | Table 1: List of States |
 |:--:|
-
-| State name            | State Code (Dec) | State Code (Bin) | Action                                 |
-| --------------------- | ---------------- | ---------------- | -------------------------------------- |
-| idle                  | 0                | 0000             |                                        |
-| rd\_init              | 4                | 0100             | Store inputs, read data, check for hit |
-| rd\_hit               | 5                | 0101             | Send data to CPU                       |
-| rd\_miss\_mem\_enable | 12               | 1100             | Send address to Mem                    |
-| rd\_miss\_mem\_wait   | 13               | 1101             | Wait for Mem                           |
-| rd\_miss\_wr          | 8                | 1000             | Write data to row                      |
-| rd\_miss\_rd          | 6                | 0110             | Read data                              |
-| rd\_miss\_send        | 7                | 0111             | Send data to CPU                       |
-| wr\_init              | 14               | 1110             | Store inputs, check for hit            |
-| wr\_hit               | 9                | 1001             | Write data                             |
-| wr\_miss              | 15               | 1111             | Do nothing                             |
-| reset                 | 1                | 0001             | Reset                                  |
+|![Table1](table1.png)|
 
 <br />
 
@@ -91,21 +78,7 @@ Table 2 shows the outputs for each state.
 
 | Table 2: State Output Table |
 |:--:|
-
-| Current State         | cpu\_busy | counter\_ce | counter\_rst | cpu\_data\_oe | mem\_add\_oe | mem\_enable | cb\_d\_wr\_control | cb\_ce | cb\_rd\_wr | cb\_offset\_control | tb\_ce | tb\_rd\_wr | valid\_ce | valid\_ce\_all | valid\_rd\_wr | valid\_d\_wr |
-| --------------------- | --------- | ----------- | ------------ | ------------- | ------------ | ----------- | ------------------ | ------ | ---------- | ------------------- | ------ | ---------- | --------- | -------------- | ------------- | ------------ |
-| idle                  | 0         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
-| rd\_init              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 1      | 1          | 0                   | 1      | 1          | 1         | 0              | 1             | x            |
-| rd\_hit               | 0         | 0           | 0            | 1             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
-| rd\_miss\_mem\_enable | 1         | 1           | 0            | 0             | 1            | 1           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
-| rd\_miss\_mem\_wait   | 1         | 1           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
-| rd\_miss\_wr          | 1         | 1           | 0            | 0             | 0            | 0           | 1                  | 1      | 0          | 1                   | 1      | 0          | 1         | 0              | 0             | 1            |
-| rd\_miss\_rd          | 1         | 0           | 1            | 0             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
-| rd\_miss\_send        | 0         | 0           | 0            | 1             | 0            | 0           | x                  | 1      | 1          | 0                   | 0      | x          | 0         | 0              | x             | x            |
-| wr\_init              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 1      | 1          | 1         | 0              | 1             | x            |
-| wr\_hit               | 1         | 0           | 0            | 0             | 0            | 0           | 0                  | 1      | 0          | 0                   | 0      | x          | 0         | 0              | x             | x            |
-| wr\_miss              | 1         | 0           | 0            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | 0         | 0              | x             | x            |
-| reset                 | 0         | 0           | 1            | 0             | 0            | 0           | x                  | 0      | x          | x                   | 0      | x          | x         | 1              | 0             | 0            |
+|![Table2](table2.png)|
 
 <br />
 
@@ -113,53 +86,7 @@ Table 3 shows the possible state transitions, based on the current state and inp
 
 | Table 3: State Transition Table |
 |:--:|
-
-| Curr state            | Inputs       |            |            |        |        |           | Next state            |
-| --------------------- | ------------ | ---------- | ---------- | ------ | ------ | --------- | --------------------- |
-|                       | cpu\_rd\_wrn | cpu\_start | cpu\_reset | count1 | count2 | hit\_miss |                       |
-| idle                  | 1            | 1          | 0          |        |        |           | rd\_init              |
-| idle                  | 0            | 1          | 0          |        |        |           | wr\_init              |
-| idle                  | x            | x          | 1          |        |        |           | reset                 |
-| idle                  | x            | 0          | 0          |        |        |           | idle                  |
-|                       |              |            |            |        |        |           |                       |
-| rd\_init              |              |            | 0          |        |        | 0         | rd\_miss\_mem\_enable |
-| rd\_init              |              |            | 0          |        |        | 1         | rd\_hit               |
-| rd\_init              |              |            | 1          |        |        | x         | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_miss\_mem\_enable |              |            | 0          |        |        |           | rd\_miss\_mem\_wait   |
-| rd\_miss\_mem\_enable |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_miss\_mem\_wait   |              |            | 0          | 0      |        |           | rd\_miss\_mem\_wait   |
-| rd\_miss\_mem\_wait   |              |            | 0          | 1      |        |           | rd\_miss\_wr          |
-| rd\_miss\_mem\_wait   |              |            | 1          | x      |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_miss\_wr          |              |            | 0          |        | 0      |           | rd\_miss\_wr          |
-| rd\_miss\_wr          |              |            | 0          |        | 1      |           | rd\_miss\_rd          |
-| rd\_miss\_wr          |              |            | 1          |        | x      |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_miss\_rd          |              |            | 0          |        |        |           | rd\_miss\_send        |
-| rd\_miss\_rd          |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_miss\_send        |              |            | 0          |        |        |           | idle                  |
-| rd\_miss\_send        |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| rd\_hit               |              |            | 0          |        |        |           | idle                  |
-| rd\_hit               |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| wr\_init              |              |            | 0          |        |        | 0         | wr\_miss              |
-| wr\_init              |              |            | 0          |        |        | 1         | wr\_hit               |
-| wr\_init              |              |            | 1          |        |        | x         | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| wr\_miss              |              |            | 0          |        |        |           | idle                  |
-| wr\_miss              |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| wr\_hit               |              |            | 0          |        |        |           | idle                  |
-| wr\_hit               |              |            | 1          |        |        |           | reset                 |
-|                       |              |            |            |        |        |           |                       |
-| reset                 | 1            | 1          | 0          |        |        |           | rd\_init              |
-| reset                 | 0            | 1          | 0          |        |        |           | wr\_init              |
-| reset                 | x            | x          | 1          |        |        |           | reset                 |
-| reset                 | x            | 0          | 0          |        |        |           | idle                  |
+|![Table3](table3.png)|
 
 <br />
 
@@ -196,14 +123,14 @@ The testbench vhd file and input and output text files are located [here](https:
 ### Chip
 Figure 1 shows the waveforms for the top-level chip. These results match the pdf that was provided near the beginning of the project.
 
-| ![simvision-chip](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-chip.png) |
+| ![simvision-chip](simvision-chip.png) |
 |:--:|
 |Figure 1: Testbench Waveforms for Chip|
 
 ### State Machine
 Figure 2 shows the waveforms for the state machine. All the inputs and outputs are shown, along with the current state.
 
-| ![simvision-statemachine](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-statemachine.png) |
+| ![simvision-statemachine](simvision-statemachine.png) |
 |:--:|
 |Figure 2: Testbench Waveforms for State Machine|
 
@@ -211,7 +138,7 @@ Figure 2 shows the waveforms for the state machine. All the inputs and outputs a
 ### Cache Block
 Figure 3 shows the waveforms for the cache block. This shows what happens when the cache is written to or read from.
 
-| ![simvision-cache](https://github.com/MickHarrigan/cmpe413-proj/blob/main/report/simvision-cache.png) |
+| ![simvision-cache](simvision-cache.png) |
 |:--:|
 |Figure 3: Testbench Waveforms for Cache Block|
 
