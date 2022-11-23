@@ -1,6 +1,8 @@
 # CMPE 413 Final Project
 This is the final project for CMPE 413 done by Daniel Cleaver and Mick Harrigan.
 
+The report is contained in `report/CMPE413FinalProjectSubmission1.pdf`
+
 ## Description
 This project aims to create a functional 4x4 byte cache design in both VHDL, and later in physical layout.
 
