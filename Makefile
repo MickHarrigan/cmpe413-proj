@@ -44,10 +44,10 @@ chip_test: $(TESTBENCHES)/example_test1/chip_test.vhd $(FILES_CHIP)
 	$(CADENCE)/run_ncvhdl.bash -messages -linedebug -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var -smartorder $(TESTBENCHES)/example_test1/chip_test.vhd
 
-	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
+#	$(CADENCE)/run_ncelab.bash -messages -access rwc -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var chip_test
 
-	$(CADENCE)/run_ncsim.bash -input $(TESTBENCHES)/example_test1/run.ncsim -messages -cdslib $(CADENCE)/cds.lib \
+#	$(CADENCE)/run_ncsim.bash -input $(TESTBENCHES)/example_test1/run.ncsim -messages -cdslib $(CADENCE)/cds.lib \
 		-hdlvar $(CADENCE)/hdl.var chip_test
 
 chip_test_gui:

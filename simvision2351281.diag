@@ -1,0 +1,90 @@
+*** Message Type: info ***
+When: Sun Dec 04 07:55:14 PM EST 2022
+SimVision started.
+Version: TOOL:  simvision       15.20-s035
+User: d163
+Host: ite375pc20.cs.UMBC.EDU
+Platform: Linux/x86_64/4.18.0-372.26.1.el8_6.x86_64
+Started: Sun Dec 04 07:55:14 PM EST 2022
+Command: /afs/umbc.edu/software/cadence/software_2017/INCISIVE152/tools.lnx86/simvision/bin/simvision.exe -connect dc:ite375pc20.cs.UMBC.EDU:39813
+Work Directory: /afs/umbc.edu/users/d/d/d163/home/cmpe413/proj/cmpe413-proj
+ 
+*** Message Type: info ***
+When: Sun Dec 04 07:55:14 PM EST 2022
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sun Dec 04 07:55:15 PM EST 2022
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Sun Dec 04 07:55:15 PM EST 2022
+Exit Simulator: abnormal
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+ 
+*** Message Type: error ***
+When: Sun Dec 04 07:55:15 PM EST 2022
+Simulator Crashed:
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+Outstanding STRAP Requests:
+        strap::get g . -xu
+        strap::get g . -ck
+        strap::get g . -sa
+ 
+*** Message Type: info ***
+When: Sun Dec 04 07:55:15 PM EST 2022
+Connect to Simulator
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+ 
+*** Message Type: info ***
+When: Sun Dec 04 07:55:15 PM EST 2022
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Sun Dec 04 08:14:56 PM EST 2022
+Delete browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sun Dec 04 08:15:04 PM EST 2022
+SimVision Exit.
+ 
