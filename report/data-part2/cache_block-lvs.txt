@@ -1,0 +1,109 @@
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        4763            nets
+        23              terminals
+        4994            pmos
+        4994            nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        4763            nets
+        25              terminals
+        4994            pmos
+        4994            nmos
+
+
+    Terminal correspondence points
+    N5141     N17       ce
+    N5137     N31       clk
+    N5143     N30       d_rd<0>
+    N5140     N29       d_rd<1>
+    N5138     N28       d_rd<2>
+    N5135     N27       d_rd<3>
+    N5131     N26       d_rd<4>
+    N5129     N25       d_rd<5>
+    N5126     N24       d_rd<6>
+    N5124     N23       d_rd<7>
+    N5144     N16       d_wr<0>
+    N5142     N15       d_wr<1>
+    N5139     N14       d_wr<2>
+    N5136     N13       d_wr<3>
+    N5134     N12       d_wr<4>
+    N5130     N11       d_wr<5>
+    N5127     N10       d_wr<6>
+    N5125     N9        d_wr<7>
+    N5146     N19       index0
+    N5145     N20       index1
+    N5133     N21       offset0
+    N5132     N22       offset1
+    N5128     N18       rd_wr
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  9988    9988   
+        total                   9988    9988   
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  4763    4763   
+        total                   4763    4763   
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   23      25     
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
