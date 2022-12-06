@@ -1,0 +1,44 @@
+primitives
+	and2
+	and3
+	and4
+	dff
+    dlatch
+	inverter
+    nor2
+    or2
+    or3
+    or4
+	tie_high
+	tie_low
+    tx
+    xor2
+
+basics
+    buff
+    bus_creator2 
+    bus_creator6 
+    comparator2
+    comparator5s
+    TODO: decoder2to4
+    TODO: decoder3to8
+    TODO: decoder4to16
+    dffer
+    dffer4
+    dlatch6
+    dlatch8
+    TODO: encoder16to4
+    mux2
+    
+cache
+
+control
+
+counter
+    adder1
+    adder5
+    buff5
+    counter5
+    dffer5
+
+chip

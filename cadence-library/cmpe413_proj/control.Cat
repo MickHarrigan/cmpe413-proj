@@ -1,0 +1,7 @@
+TDMCHECKPOINT="1.0"
+cmpe413_proj/hit_miss_detector type="cell"
+cmpe413_proj/output_enable6 type="cell"
+cmpe413_proj/output_enable8 type="cell"
+cmpe413_proj/statemachine type="cell"
+cmpe413_proj/valid_ce_gen type="cell"
+keepEmptyCategory type="unknown"

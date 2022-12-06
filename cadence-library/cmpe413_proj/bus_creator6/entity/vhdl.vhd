@@ -1,0 +1,19 @@
+-- Created by @(#)$CDS: vhdlin version 6.1.7-64b 09/27/2016 19:46 (sjfhw304) $
+-- on Tue Nov 29 13:43:40 2022
+
+
+library STD;
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity bus_creator6 is
+    port(
+        input5  : in std_logic;
+        input4  : in std_logic;
+        input3  : in std_logic;
+        input2  : in std_logic;
+        input1  : in std_logic;
+        input0  : in std_logic;
+        output  : out std_logic_vector(5 downto 0)
+    );
+end bus_creator6;
