@@ -5,7 +5,7 @@ Semester: Fall 2022
 
 Completed by: Mick Harrigan and Daniel Cleaver
 
-Date: 2022-11-22
+Date: 2022-12-13
 
 ## Description
 This system from the top level chip all the way down uses many different connected parts to achieve the desired results.
@@ -70,7 +70,7 @@ description of each.
 
 | Table 1: List of States |
 |:--:|
-|![Table1](table1.png)|
+|![Table1](./data-part1/table1.png)|
 
 <br />
 
@@ -78,7 +78,7 @@ Table 2 shows the outputs for each state.
 
 | Table 2: State Output Table |
 |:--:|
-|![Table2](table2.png)|
+|![Table2](./data-part1/table2.png)|
 
 <br />
 
@@ -86,7 +86,7 @@ Table 3 shows the possible state transitions, based on the current state and inp
 
 | Table 3: State Transition Table |
 |:--:|
-|![Table3](table3.png)|
+|![Table3](./data-part1/table3.png)|
 
 <br />
 
@@ -123,14 +123,14 @@ The testbench vhd file and input and output text files are located [here](https:
 ### Chip
 Figure 1 shows the waveforms for the top-level chip. These results match the pdf that was provided near the beginning of the project.
 
-| ![simvision-chip](simvision-chip.png) |
+| ![simvision-chip](./data-part1/simvision-chip.png) |
 |:--:|
 |Figure 1: Testbench Waveforms for Chip|
 
 ### State Machine
 Figure 2 shows the waveforms for the state machine. All the inputs and outputs are shown, along with the current state.
 
-| ![simvision-statemachine](simvision-statemachine.png) |
+| ![simvision-statemachine](./data-part1/simvision-statemachine.png) |
 |:--:|
 |Figure 2: Testbench Waveforms for State Machine|
 
@@ -138,20 +138,701 @@ Figure 2 shows the waveforms for the state machine. All the inputs and outputs a
 ### Cache Block
 Figure 3 shows the waveforms for the cache block. This shows what happens when the cache is written to or read from.
 
-| ![simvision-cache](simvision-cache.png) |
+| ![simvision-cache](./data-part1/simvision-cache.png) |
 |:--:|
 |Figure 3: Testbench Waveforms for Cache Block|
+
+## Layouts
+The layouts for certain components are shown below. Each layout is followed by its the LVS output to verify that the the layouts we created are equivalent to the schematics from the VHDL code.
+
+### cache_cell1
+| ![cache_cell1 layout](./data-part2/cache_cell1-layout.png) |
+|:--:|
+|Figure 4: Layout of a single bit cache cell|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        43              nets
+        5               terminals
+        38              pmos
+        38              nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        43              nets
+        7               terminals
+        38              pmos
+        38              nmos
+
+
+    Terminal correspondence points
+    N44       N9        ce
+    N42       N12       clk
+    N43       N11       d_rd
+    N45       N7        d_wr
+    N41       N10       rd_wr
+
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  76      76     
+        total                   76      76     
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  43      43     
+        total                   43      43     
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   5       7      
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
+\pagebreak
+
+### cache_block
+| ![cache_block layout](./data-part2/cache_block-layout.png) |
+|:--:|
+|Figure 5: Layout of the whole 4x4 Byte cache block|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        4763            nets
+        23              terminals
+        4994            pmos
+        4994            nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        4763            nets
+        25              terminals
+        4994            pmos
+        4994            nmos
+
+
+    Terminal correspondence points
+    N5141     N17       ce
+    N5137     N31       clk
+    N5143     N30       d_rd<0>
+    N5140     N29       d_rd<1>
+    N5138     N28       d_rd<2>
+    N5135     N27       d_rd<3>
+    N5131     N26       d_rd<4>
+    N5129     N25       d_rd<5>
+    N5126     N24       d_rd<6>
+    N5124     N23       d_rd<7>
+    N5144     N16       d_wr<0>
+    N5142     N15       d_wr<1>
+    N5139     N14       d_wr<2>
+    N5136     N13       d_wr<3>
+    N5134     N12       d_wr<4>
+    N5130     N11       d_wr<5>
+    N5127     N10       d_wr<6>
+    N5125     N9        d_wr<7>
+    N5146     N19       index0
+    N5145     N20       index1
+    N5133     N21       offset0
+    N5132     N22       offset1
+    N5128     N18       rd_wr
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  9988    9988   
+        total                   9988    9988   
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  4763    4763   
+        total                   4763    4763   
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   23      25     
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
+\pagebreak
+
+### counter5
+| ![counter5 layout](./data-part2/counter5-layout.png) |
+|:--:|
+|Figure 6: Layout of the 5 bit counter|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        285             nets
+        8               terminals
+        282             pmos
+        282             nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        285             nets
+        10              terminals
+        282             pmos
+        282             nmos
+
+
+    Terminal correspondence points
+    N296      N11       ce
+    N295      N15       clk
+    N292      N23       q<0>
+    N290      N22       q<1>
+    N299      N21       q<2>
+    N298      N14       q<3>
+    N297      N13       q<4>
+    N293      N12       rst
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  564     564    
+        total                   564     564    
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  285     285    
+        total                   285     285    
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   8       10     
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
+\pagebreak
+
+### mux2
+| ![mux2 layout](./data-part2/mux2-layout.png) |
+|:--:|
+|Figure 7: Layout of the 2 to 1 bit mux|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        15              nets
+        4               terminals
+        10              pmos
+        10              nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        15              nets
+        6               terminals
+        10              pmos
+        10              nmos
+
+
+    Terminal correspondence points
+    N12       N8        input0
+    N11       N7        input1
+    N13       N2        output
+    N14       N6        s
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  20      20     
+        total                   20      20     
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  15      15     
+        total                   15      15     
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   4       6      
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
+\pagebreak
+
+### statemachine
+| ![statemachine layout](./data-part2/statemachine-layout.png) |
+|:--:|
+|Figure 8: Layout of the state machine|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        439             nets
+        23              terminals
+        438             pmos
+        438             nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        439             nets
+        25              terminals
+        438             pmos
+        438             nmos
+
+
+    Terminal correspondence points
+    N448      N67       cb_ce
+    N439      N68       cb_d_wr_control
+    N416      N65       cb_offset_control
+    N451      N66       cb_rd_wr
+    N433      N80       clk
+    N425      N77       count1
+    N424      N76       count2
+    N420      N73       counter_ce
+    N430      N72       counter_rst
+    N440      N74       cpu_busy
+    N429      N71       cpu_data_oe
+    N422      N81       cpu_rd_wrn
+    N417      N78       cpu_reset
+    N419      N79       cpu_start
+    N428      N75       hit_miss
+    N412      N70       mem_add_oe
+    N434      N69       mem_enable
+    N413      N64       tb_ce
+    N432      N63       tb_rd_wr
+    N431      N62       valid_ce
+    N426      N61       valid_ce_all
+    N441      N59       valid_d_wr
+    N418      N60       valid_rd_wr
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  876     876    
+        total                   876     876    
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  439     439    
+        total                   439     439    
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   23      25     
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
+\pagebreak
+
+### chip
+| ![1-bit cache cell layout](./data-part2/chip-layout.png) |
+|:--:|
+|Figure 9: Layout of the entire chip|
+
+```
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        6266            nets
+        36              terminals
+        6538            pmos
+        6538            nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        6266            nets
+        38              terminals
+        6538            pmos
+        6538            nmos
+
+
+    Terminal correspondence points
+    N6691     N58       busy
+    N6701     N97       clk
+    N6702     N33       cpu_add<0>
+    N6698     N32       cpu_add<1>
+    N6690     N31       cpu_add<2>
+    N6685     N30       cpu_add<3>
+    N6682     N29       cpu_add<4>
+    N6679     N28       cpu_add<5>
+    N6695     N94       cpu_data<0>
+    N6689     N93       cpu_data<1>
+    N6684     N92       cpu_data<2>
+    N6680     N91       cpu_data<3>
+    N6715     N90       cpu_data<4>
+    N6710     N89       cpu_data<5>
+    N6707     N88       cpu_data<6>
+    N6704     N87       cpu_data<7>
+    N6688     N95       cpu_rd_wrn
+    N6694     N27       gnd
+    N6714     N107      mem_add<0>
+    N6709     N66       mem_add<1>
+    N6706     N65       mem_add<2>
+    N6703     N64       mem_add<3>
+    N6699     N63       mem_add<4>
+    N6692     N62       mem_add<5>
+    N6681     N106      mem_data<0>
+    N6716     N105      mem_data<1>
+    N6711     N104      mem_data<2>
+    N6708     N103      mem_data<3>
+    N6705     N102      mem_data<4>
+    N6700     N101      mem_data<5>
+    N6693     N100      mem_data<6>
+    N6687     N99       mem_data<7>
+    N6686     N61       mem_en
+    N6712     N98       reset
+    N6713     N96       start
+    N6683     N36       vdd
+
+Devices in the netlist but not in the rules:
+        pcapacitor
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  13076   13076  
+        total                   13076   13076  
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  6266    6266   
+        total                   6266    6266   
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   36      38     
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+? Terminal gnd is floating in the schematic.
+? Terminal vdd is floating in the schematic.
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+? Terminal gnd is floating in the layout.
+? Terminal vdd is floating in the layout.
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+```
 
 ## Work Breakdown
 Breakdown of commits to the repo are listed [here](https://github.com/MickHarrigan/cmpe413-proj/commits/main). This is a chronicle of all changes and updates that each person did over the course of the development of this project. Looking deeper into the commit history shows a list of all changes that were pushed to the repo and from which user. Clicking on any of the commits will show which files were changed, added, removed, or moved.
 
 In terms of lines written by each person, more were written in Dan's commits due to his dealing with longer files, whereas Mick spent more time on creating more smaller low-level files that were used throughout the porject. The overall amount of code used in the final version of this VHDL library is fairly even with a similarly even split of the workload. Lastly, writing of the documentation for the project was done simultaneously by both team members through the use of live coding. 
 
-Moving forward, the plan for the layouts is to split up time on the primitives and then each work with the modules that we are most familiar with. This should result in an even time spent on the layouts as well as the VHDL.
+While working on the layouts, we split up time on the primitives and we both worked with the modules that we are most familiar with. Dan spent more time working on the larger, higher-level modules and Mick created more of the basic components. We also spent time working side by side when both of us were working on the same layout at once.
 
 ## Conclusion
 This project has taught many different skills and tools to be used later in both of our careers. From learning more simple things such as Git and software control structures, to more specific to this class with VHDL and hierarchical design.
 We expect this to continue with the second half of the project with creating the layouts of the files and systems we designed to eventually have a fully functional cache system.
+
+The creation of the layouts was a task that required a great deal of time and effort for the two of us. We spent much time trying to organize and create our VHDL code into a true system and were able to do so for this report to be made.
 
 With all of this in mind this project has been a success in both learning and applying the topics learned in class as well as applicable to our careers as we prepare for our time after graduation.
 
