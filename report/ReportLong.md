@@ -142,13 +142,17 @@ Figure 3 shows the waveforms for the cache block. This shows what happens when t
 |:--:|
 |Figure 3: Testbench Waveforms for Cache Block|
 
-## Layouts
+## Layouts and Schematics
 The layouts for certain components are shown below. Each layout is followed by its the LVS output to verify that the the layouts we created are equivalent to the schematics from the VHDL code.
 
 ### cache_cell1
 | ![cache_cell1 layout](./data-part2/cache_cell1-layout.png) |
 |:--:|
 |Figure 4: Layout of a single bit cache cell|
+
+| ![cache_cell1 schematic](./data-part2/cache_cell1-schematic.png) |
+|:--:|
+|Figure 5: Schematic of a single bit cache cell|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
@@ -247,7 +251,11 @@ audit.out:
 ### cache_block
 | ![cache_block layout](./data-part2/cache_block-layout.png) |
 |:--:|
-|Figure 5: Layout of the whole 4x4 Byte cache block|
+|Figure 6: Layout of the whole 4x4 Byte cache block|
+
+| ![cache_block schematic](./data-part2/cache_block-schematic.png) |
+|:--:|
+|Figure 7: Schematic of the whole 4x4 Byte cache block|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
@@ -366,7 +374,11 @@ audit.out:
 ### counter5
 | ![counter5 layout](./data-part2/counter5-layout.png) |
 |:--:|
-|Figure 6: Layout of the 5 bit counter|
+|Figure 8: Layout of the 5 bit counter|
+
+| ![counter5 schematic](./data-part2/counter5-schematic.png) |
+|:--:|
+|Figure 9: Schematic of the 5 bit counter|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
@@ -470,7 +482,11 @@ audit.out:
 ### mux2
 | ![mux2 layout](./data-part2/mux2-layout.png) |
 |:--:|
-|Figure 7: Layout of the 2 to 1 bit mux|
+|Figure 10: Layout of the 2 to 1 bit mux|
+
+| ![mux2 schematic](./data-part2/mux2-schematic.png) |
+|:--:|
+|Figure 11: Schematic of the 2 to 1 bit mux|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
@@ -570,7 +586,11 @@ audit.out:
 ### statemachine
 | ![statemachine layout](./data-part2/statemachine-layout.png) |
 |:--:|
-|Figure 8: Layout of the state machine|
+|Figure 12: Layout of the state machine|
+
+| ![statemachine schematic](./data-part2/statemachine-schematic.png) |
+|:--:|
+|Figure 13: Schematic of the state machine|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
@@ -689,7 +709,11 @@ audit.out:
 ### chip
 | ![1-bit cache cell layout](./data-part2/chip-layout.png) |
 |:--:|
-|Figure 9: Layout of the entire chip|
+|Figure 14: Layout of the entire chip|
+
+| ![1-bit cache cell schematic](./data-part2/chip-schematic.png) |
+|:--:|
+|Figure 15: Schematic of the entire chip|
 
 ```
 @(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
