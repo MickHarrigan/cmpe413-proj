@@ -242,6 +242,7 @@ prunedev.out:
 audit.out:
 
 ```
+\pagebreak
 
 ### cache_block
 | ![cache_block layout](./data-part2/cache_block-layout.png) |
@@ -360,6 +361,8 @@ prunedev.out:
 audit.out:
 
 ```
+\pagebreak
+
 ### counter5
 | ![counter5 layout](./data-part2/counter5-layout.png) |
 |:--:|
@@ -462,6 +465,8 @@ prunedev.out:
 audit.out:
 
 ```
+\pagebreak
+
 ### mux2
 | ![mux2 layout](./data-part2/mux2-layout.png) |
 |:--:|
@@ -560,6 +565,8 @@ prunedev.out:
 audit.out:
 
 ```
+\pagebreak
+
 ### statemachine
 | ![statemachine layout](./data-part2/statemachine-layout.png) |
 |:--:|
@@ -677,6 +684,8 @@ prunedev.out:
 audit.out:
 
 ```
+\pagebreak
+
 ### chip
 | ![1-bit cache cell layout](./data-part2/chip-layout.png) |
 |:--:|
