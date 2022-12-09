@@ -711,6 +711,11 @@ audit.out:
 |:--:|
 |Figure 14: Layout of the entire chip|
 
+The total area of the layout is calculated as the following:
+Width = 2.9076 mm
+Height = 2.43975 mm
+Area = 7.094 mm^2
+
 | ![1-bit cache cell schematic](./data-part2/chip-schematic.png) |
 |:--:|
 |Figure 15: Schematic of the entire chip|
