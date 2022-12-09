@@ -26,3 +26,24 @@ open_wave_config /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.
 source chip_test.tcl
 save_wave_config {/afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.wcfg}
 close_sim
+launch_simulation
+open_wave_config /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.wcfg
+source chip_test.tcl
+close_sim
+launch_simulation
+launch_simulation
+add_files -norecurse /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj/src/basics/fed.vhd
+update_compile_order -fileset sources_1
+launch_simulation
+open_wave_config /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.wcfg
+source chip_test.tcl
+relaunch_sim
+update_compile_order -fileset sources_1
+save_wave_config {/afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.wcfg}
+close_sim
+export_ip_user_files -of_objects  [get_files /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj/src/basics/fed.vhd] -no_script -reset -force -quiet
+remove_files  /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj/src/basics/fed.vhd
+launch_simulation
+open_wave_config /afs/umbc.edu/users/d/d/d163/pub/cmpe413-proj-vivado/chip_test.wcfg
+source chip_test.tcl
+close_sim

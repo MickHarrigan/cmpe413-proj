@@ -1,0 +1,89 @@
+@(#)$CDS: LVS version 6.1.7-64b 09/27/2016 19:41 (sjfhw305) $
+
+Command line: /afs/umbc.edu/software/cadence/installs/IC617/tools.lnx86/dfII/bin/64bit/LVS -dir /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS -l -t /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+Like matching is enabled.
+Using terminal names as correspondence points.
+Compiling Diva LVS rules...
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout/netlist
+       count
+        43              nets
+        5               terminals
+        38              pmos
+        38              nmos
+
+    Net-list summary for /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic/netlist
+       count
+        43              nets
+        7               terminals
+        38              pmos
+        38              nmos
+
+
+    Terminal correspondence points
+    N44       N9        ce
+    N42       N12       clk
+    N43       N11       d_rd
+    N45       N7        d_wr
+    N41       N10       rd_wr
+
+Devices in the rules but not in the netlist:
+        cap nfet pfet nmos4 pmos4
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  76      76     
+        total                   76      76     
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  43      43     
+        total                   43      43     
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   5       7      
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /afs/umbc.edu/users/d/d/d163/home/cmpe413/cadence/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
