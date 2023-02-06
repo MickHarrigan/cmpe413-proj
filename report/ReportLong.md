@@ -707,7 +707,7 @@ audit.out:
 \pagebreak
 
 ### chip
-| ![1-bit cache cell layout](./data-part2/chip-layout.png) |
+| ![chip layout](./data-part2/chip-layout.png) |
 |:--:|
 |Figure 14: Layout of the entire chip|
 
@@ -719,7 +719,7 @@ Height = 2.43975 mm
 
 Area = 7.094 mm^2
 
-| ![1-bit cache cell schematic](./data-part2/chip-schematic.png) |
+| ![chip schematic](./data-part2/chip-schematic.png) |
 |:--:|
 |Figure 15: Schematic of the entire chip|
 
